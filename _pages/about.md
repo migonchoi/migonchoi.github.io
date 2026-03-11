@@ -2,33 +2,32 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+# subtitle 부분에 소속을 적으세요.
+subtitle: <a href='https://www.duke.edu'>Duke University</a>. Materials Science and Engineering.
 
 profile:
-  align: right
+  align: left
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: true # 동그란 사진이 예쁘면 true, 사각형이 좋으면 false
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Duke University</p>
+    <p>Durham, NC</p>
+    <p>migon.choi@duke.edu</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+news: true  # News 섹션 켜기
+selected_papers: true # Selected Publications 섹션 켜기
+social: true # 아이콘 켜기
 
+# 필요 없다고 하신 부분들 끄기
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  enabled: false # false로 바꾸면 화면에서 사라집니다.
 
 latest_posts:
-  enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+  enabled: false # 블로그 포스트 안 쓸 거면 false
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](https://www.reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+### 안녕하세요, 최미곤입니다! 👋
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
-
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+여기에 본인의 자기소개를 자유롭게 적으시면 됩니다. 
+위의 설정에서 `announcements`와 `latest_posts`를 `false`로 바꿨기 때문에, 
+이제 화면에는 사진과 이 소개글만 깔끔하게 나올 거예요.
