@@ -47,7 +47,7 @@
   ],
   "publications": [
     {
-      "name": "Chemical Information-Driven Machine Learning Models for Enhanced Performance Prediction of 2D Perovskite Solar Cells",
+      "name": "Interpretable machine learning on a curated dataset identifies chemical descriptors governing 2D perovskite solar cell performance",
       "publisher": "Solar Energy",
       "releaseDate": "2026",
       "url": "https://doi.org/10.1016/j.solener.2025.114112"
@@ -67,6 +67,20 @@
     {
       "name": "Programming",
       "keywords": ["Python", "RDKit", "ML workflows"]
+    }
+  ],
+    "Selected Media & Talks": [
+    {
+      "name": “The Future of Materials Science Starts Here with AI” – Duke University (Study International)",
+      "url": "https://studyinternational.com/news/duke-university-the-future-of-materials-science-starts-here-with-ai/"
+    },
+    {
+      "name": "AI-Guided Materials Discovery” – Duke aiM Program (Technical Talk)",
+      "url": "https://www.youtube.com/watch?v=rJcwa_jvHrI"
+    },
+    {
+      "name": "AI + Materials at Duke Pratt” – Duke Pratt News",
+      "url": "https://pratt.duke.edu/news/meng-ai-and-materials/?utm_source=newsletter&utm_medium=email&utm_content=INVENT%20TOMORROW%26%2339%3BS%20BUILDING%20BLOCKS%20%E2%9E%94&utm_campaign=pratt-blueprint-202509&cn-reloaded=1"
     }
   ]
 }
