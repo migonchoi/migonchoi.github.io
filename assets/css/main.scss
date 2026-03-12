@@ -37,3 +37,23 @@
 @use "font-awesome/brands";
 @use "font-awesome/solid";
 @use "font-awesome/regular";
+
+/* 전체 폰트를 Cambria로 변경 및 가독성 개선 */
+body {
+  font-family: "Cambria", "Georgia", "Times New Roman", serif !important;
+  line-height: 1.65 !important; /* 전체적인 줄 간격 확보 */
+}
+
+/* About Me 섹션의 본문 텍스트 여유 공간 추가 */
+.post-content {
+  p, li {
+    margin-bottom: 1.2rem !important; /* 문단 사이 간격 */
+    line-height: 1.7 !important;     /* 글자 줄 간격 더 넓게 */
+  }
+}
+
+/* 제목과 본문 사이 간격 추가 */
+h3 {
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
