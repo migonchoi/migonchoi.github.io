@@ -11,7 +11,7 @@ ninja.data = [{
     },
   },{id: "nav-cv",
           title: "CV",
-          description: "AI Scientist focused on decision-centric machine learning for scientific discovery.",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
