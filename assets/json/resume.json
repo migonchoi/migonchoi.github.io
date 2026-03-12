@@ -4,7 +4,7 @@
     "label": "Ph.D. in Materials Science and Engineering",
     "email": "migon.choi@duke.edu",
     "url": "https://www.linkedin.com/in/migonchoi1998",
-    "summary": "AI Scientist focused on decision-centric machine learning for scientific discovery, specializing in uncertainty-aware modeling and data-efficient workflows.",
+    "summary": "AI Scientist focused on decision-centric machine learning for scientific discovery.",
     "location": {
       "city": "Durham",
       "countryCode": "US",
@@ -17,16 +17,14 @@
       "area": "Materials Science and Engineering",
       "studyType": "Ph.D.",
       "startDate": "2021-08-17",
-      "endDate": "2026-05-10",
-      "courses": ["NSF National Research Traineeship (NRT) Fellow in AI (aiM)"]
+      "endDate": "2026-05-10"
     },
     {
       "institution": "Pusan National University",
       "area": "Materials Science and Engineering",
       "studyType": "B.S.",
       "startDate": "2017-03-01",
-      "endDate": "2020-08-01",
-      "score": "4.22/4.5 (Top 5%, Summa Cum Laude)"
+      "endDate": "2020-08-01"
     }
   ],
   "work": [
@@ -34,14 +32,12 @@
       "name": "Samsung Electronics",
       "position": "Engineer",
       "startDate": "2020-12-28",
-      "endDate": "2021-07-14",
-      "summary": "Designed and analyzed 8nm and 14nm RF FinFET materials architectures."
+      "endDate": "2021-07-14"
     },
     {
       "name": "Duke Capital Partners (DCP)",
       "position": "Senior Associate",
-      "startDate": "2024-10-01",
-      "summary": "Evaluated deep-tech startups in AI, materials, and infrastructure domains."
+      "startDate": "2024-10-01"
     }
   ],
   "publications": [
@@ -58,28 +54,20 @@
       "url": "https://doi.org/10.1021/acsami.5c19800"
     }
   ],
- "references": [
+  "references": [
     {
       "name": "The Future of Materials Science Starts Here with AI – Duke University (Study International)",
-      "reference": "<a href='https://studyinternational.com/news/duke-university-the-future-of-materials-science-starts-here-with-ai/'>Click to view article</a>"
+      "reference": "<a href='https://studyinternational.com/news/duke-university-the-future-of-materials-science-starts-here-with-ai/'>Read Article</a>"
     },
     {
       "name": "AI-Guided Materials Discovery – Duke aiM Program (Technical Talk)",
-      "reference": "<a href='https://www.youtube.com/watch?v=rJcwa_jvHrI'>Watch on YouTube</a>"
-    },
-    {
-      "name": "AI + Materials at Duke Pratt – Duke Pratt News",
-      "reference": "<a href='https://pratt.duke.edu/news/meng-ai-and-materials/?utm_source=newsletter&utm_medium=email&utm_content=INVENT%20TOMORROW%26%2339%3BS%20BUILDING%20BLOCKS%20%E2%9E%94&utm_campaign=pratt-blueprint-202509&cn-reloaded=1'>Read full news</a>"
+      "reference": "<a href='https://www.youtube.com/watch?v=rJcwa_jvHrI'>Watch Video</a>"
     }
   ],
   "skills": [
     {
       "name": "Machine Learning",
       "keywords": ["Bayesian modeling", "Uncertainty quantification", "Active learning"]
-    },
-    {
-      "name": "Programming",
-      "keywords": ["Python", "RDKit", "ML workflows"]
     }
   ]
 }
