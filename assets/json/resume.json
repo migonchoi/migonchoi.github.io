@@ -9,7 +9,8 @@
       "city": "Durham",
       "countryCode": "US",
       "region": "NC"
-    }
+    },
+    "profiles": []
   },
   "education": [
     {
@@ -17,14 +18,16 @@
       "area": "Materials Science and Engineering",
       "studyType": "Ph.D.",
       "startDate": "2021-08-17",
-      "endDate": "2026-05-10"
+      "endDate": "2026-05-10",
+      "courses": []
     },
     {
       "institution": "Pusan National University",
       "area": "Materials Science and Engineering",
       "studyType": "B.S.",
       "startDate": "2017-03-01",
-      "endDate": "2020-08-01"
+      "endDate": "2020-08-01",
+      "courses": []
     }
   ],
   "work": [
@@ -32,12 +35,14 @@
       "name": "Samsung Electronics",
       "position": "Engineer",
       "startDate": "2020-12-28",
-      "endDate": "2021-07-14"
+      "endDate": "2021-07-14",
+      "highlights": []
     },
     {
       "name": "Duke Capital Partners (DCP)",
       "position": "Senior Associate",
-      "startDate": "2024-10-01"
+      "startDate": "2024-10-01",
+      "highlights": []
     }
   ],
   "publications": [
@@ -54,20 +59,14 @@
       "url": "https://doi.org/10.1021/acsami.5c19800"
     }
   ],
-  "references": [
-    {
-      "name": "The Future of Materials Science Starts Here with AI – Duke University (Study International)",
-      "reference": "<a href='https://studyinternational.com/news/duke-university-the-future-of-materials-science-starts-here-with-ai/'>Read Article</a>"
-    },
-    {
-      "name": "AI-Guided Materials Discovery – Duke aiM Program (Technical Talk)",
-      "reference": "<a href='https://www.youtube.com/watch?v=rJcwa_jvHrI'>Watch Video</a>"
-    }
-  ],
   "skills": [
     {
       "name": "Machine Learning",
-      "keywords": ["Bayesian modeling", "Uncertainty quantification", "Active learning"]
+      "keywords": [
+        "Bayesian modeling",
+        "Uncertainty quantification",
+        "Active learning"
+      ]
     }
   ]
 }
