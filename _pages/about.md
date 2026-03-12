@@ -7,11 +7,16 @@ subtitle: <a href='https://mse.duke.edu/'>Duke University</a>. Materials Science
 profile:
   align: left
   image: prof_pic.jpg
-  image_circular: true # 사진을 둥글게 하려면 true
+  image_circular: true
   more_info: >
     <p>Duke University</p>
     <p>Durham, NC</p>
     <p>migon.choi@duke.edu</p>
+    <div class="social" style="font-size: 1.4rem; margin-top: 10px; display: flex; gap: 15px;">
+      <a href="https://www.linkedin.com/in/migonchoi1998" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://github.com/migonchoi" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+    </div>
 ---
 
 ### About Me
@@ -27,4 +32,4 @@ With a background that spans both the laboratory bench and data-driven modeling,
   
 * **Applied Machine Learning:** Proven ability to design, interpret, and deploy ML models (Bayesian optimization, etc.) tailored for materials property prediction.
 
-If you’re interested in discussing research collaborations, postdoctoral opportunities, or the future of data-driven materials science, please feel free to contact me via [email](mailto:migon.choi@duke.edu)!
+If you’re interested in discussing research collaborations or the future of data-driven materials science, please feel free to contact me via [email](mailto:migon.choi@duke.edu)!
