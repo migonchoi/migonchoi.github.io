@@ -14,8 +14,6 @@ profile:
     <p>migon.choi@duke.edu</p>
 ---
 
-<br>
-
 ### About Me
 I am a **Ph.D. in Materials Science from Duke University** (defended recently, graduating May 2026). My research bridges the gap between traditional experimental science and modern computational methods. I specialize in integrating **experimental perovskite science** with advanced machine-learning approaches, including **Bayesian models, uncertainty quantification, and active learning** to accelerate materials discovery.
 
