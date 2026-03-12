@@ -3,22 +3,18 @@
 ---
 @charset "utf-8";
 
-/* Built-in Sass modules you’ll likely use across partials */
+/* Built-in Sass modules */
 @use "sass:math";
 @use "sass:string";
 
-/* Configure your design tokens BEFORE loading any of your partials.
-   Make sure `_sass/_variables.scss` declares `$max-content-width: 72rem !default;` */
+/* Configure design tokens */
 @use "variables" with (
-  $max-content-width: {{ site.max_width | default:  "930px" }}
+  $max-content-width: {{ site.max_width | default: "1100px" }}
 );
 
-/* Your project partials — convert these files to `@use "variables";`
-   (or `@use "variables" as *;`) inside each file and qualify variables if needed. */
+/* Project partials */
 @use "themes";
 @use "layout";
-
-// Core styles organized by usage
 @use "typography";
 @use "navbar";
 @use "footer";
@@ -26,8 +22,6 @@
 @use "publications";
 @use "components";
 @use "utilities";
-
-// Other specialized styles
 @use "distill";
 @use "cv";
 @use "tabs";
@@ -38,33 +32,73 @@
 @use "font-awesome/solid";
 @use "font-awesome/regular";
 
-/* 전체 폰트를 Cambria로 변경 및 가독성 개선 */
+/* ==========================================================================
+   박사님 커스텀 스타일 (폰트 & 레이아웃)
+   ========================================================================== */
+
+/* 1. 전체 폰트 Cambria 설정 및 기본 줄 간격 */
 body {
   font-family: "Cambria", "Georgia", "Times New Roman", serif !important;
-  line-height: 1.65 !important; /* 전체적인 줄 간격 확보 */
+  line-height: 1.65 !important;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* About Me 섹션의 본문 텍스트 여유 공간 추가 */
+/* 2. 본문 가독성 (문단 간격 및 양끝 정렬) */
 .post-content {
+  text-align: justify;
+  font-size: 1.1rem;
+  
   p, li {
-    margin-bottom: 1.2rem !important; /* 문단 사이 간격 */
-    line-height: 1.7 !important;     /* 글자 줄 간격 더 넓게 */
+    margin-bottom: 1.2rem !important;
+    line-height: 1.75 !important;
   }
 }
 
-/* 제목과 본문 사이 간격 추가 */
+/* 3. 제목 간격 조정 */
 h3 {
   margin-top: 2.5rem !important;
   margin-bottom: 1.5rem !important;
-}
-/* 사이드바 프로필과 본문 사이 간격 조정 */
-.profile {
-  margin-right: 2rem !important;
-  margin-bottom: 2rem !important;
+  font-weight: bold;
 }
 
-/* 본문 가독성 향상 */
-.post-content {
-  text-align: justify; /* 텍스트 양끝 정렬 (선택사항) */
-  font-size: 1.1rem;
+/* 4.프로필 사이드바 완전 왼쪽 분리 (데스크탑) */
+@media (min-width: 768px) {
+  .post {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .profile {
+    width: 250px !important;      /* 사이드바 고정 너비 */
+    min-width: 250px !important;
+    margin-right: 4rem !important; /* 본문과 확실한 왼쪽 간격 */
+    float: none !important;        /* 본문이 파고들지 못하게 함 */
+    position: sticky !important;   /* 스크롤 시 사진 고정 */
+    top: 80px;
+  }
+
+  .post-content {
+    flex: 1 !important;           /* 남은 공간 전체 사용 */
+    max-width: 750px !important;
+  }
+}
+
+/* 5. 모바일 화면 대응 */
+@media (max-width: 767px) {
+  .profile {
+    width: 100% !important;
+    margin: 0 auto 2rem !important;
+    text-align: center;
+  }
+}
+
+/* 6. 프로필 하단 연락처 정보 스타일 */
+.more-info {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6 !important;
+  color: #555;
+  text-align: left;
 }
