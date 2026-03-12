@@ -7,7 +7,7 @@
 @use "sass:string";
 
 @use "variables" with (
-  $max-content-width: {{ site.max_width | default: "1000px" }}
+  $max-content-width: {{ site.max_width | default: "1100px" }}
 );
 
 @use "themes";
@@ -25,51 +25,49 @@
 @use "font-awesome/solid";
 @use "font-awesome/regular";
 
-/* ---  폰트 --- */
+/* --- [1] 박사님 전용 폰트 (Cambria) --- */
 body {
   font-family: "Cambria", serif !important;
   line-height: 1.65 !important;
 }
 
-/* --- 아예 왼쪽으로 빼기 (사이드바 레이아웃) --- */
-@media (min-width: 768px) {
-  /* 본문 영역 전체를 두 칸으로 나눔 */
-  .post {
+/* --- [2] About 페이지 전용 좌우 분리 레이아웃 (CV 영향 없음) --- */
+@media (min-width: 992px) {
+  /* .about 클래스가 있을 때만 flex 적용 */
+  .post.about {
     display: flex !important;
+    flex-direction: row !important;
     align-items: flex-start !important;
-    gap: 50px !important; /* 사진과 글 사이의 확실한 간격 */
+    gap: 60px !important; /* 사진과 본문 사이 간격 */
   }
 
-  /* 왼쪽: 사진과 연락처만 들어가는 기둥 */
-  .profile {
-    width: 250px !important;
-    min-width: 250px !important;
+  /* 왼쪽 프로필 기둥 */
+  .post.about .profile {
+    width: 260px !important;
+    min-width: 260px !important;
     margin: 0 !important;
-    float: none !important; /* 글이 파고드는걸 원천 봉쇄 */
     position: sticky !important;
     top: 100px;
+    float: none !important;
   }
 
-  /* 오른쪽: 글자만 들어가는 영역 */
-  .post-content {
+  /* 오른쪽 본문 영역 */
+  .post.about .post-content {
     flex: 1 !important;
     width: auto !important;
   }
 }
 
-/* 모바일에서는 원래대로 위-아래 정렬 */
-@media (max-width: 767px) {
-  .post { display: block !important; }
-  .profile { width: 100% !important; text-align: center; }
+/* --- [3] 기타 스타일 정돈 --- */
+.post-content {
+  text-align: justify;
+  font-size: 1.1rem;
+  p { margin-bottom: 1.5rem !important; }
 }
 
 .more-info {
   margin-top: 1.5rem;
   font-size: 0.95rem;
   line-height: 1.5 !important;
-}
-
-.post-content {
-  text-align: justify;
-  font-size: 1.1rem;
+  color: #555;
 }
