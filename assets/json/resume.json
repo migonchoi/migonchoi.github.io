@@ -58,21 +58,18 @@
       "url": "https://doi.org/10.1021/acsami.5c19800"
     }
   ],
-  "references": [
+ "references": [
     {
       "name": "The Future of Materials Science Starts Here with AI – Duke University (Study International)",
-      "reference": "Click to view article",
-      "url": "https://studyinternational.com/news/duke-university-the-future-of-materials-science-starts-here-with-ai/"
+      "reference": "<a href='https://studyinternational.com/news/duke-university-the-future-of-materials-science-starts-here-with-ai/'>Click to view article</a>"
     },
     {
       "name": "AI-Guided Materials Discovery – Duke aiM Program (Technical Talk)",
-      "reference": "Watch on YouTube",
-      "url": "https://www.youtube.com/watch?v=rJcwa_jvHrI"
+      "reference": "<a href='https://www.youtube.com/watch?v=rJcwa_jvHrI'>Watch on YouTube</a>"
     },
     {
       "name": "AI + Materials at Duke Pratt – Duke Pratt News",
-      "reference": "Read full news",
-      "url": "https://pratt.duke.edu/news/meng-ai-and-materials/?utm_source=newsletter&utm_medium=email&utm_content=INVENT%20TOMORROW%26%2339%3BS%20BUILDING%20BLOCKS%20%E2%9E%94&utm_campaign=pratt-blueprint-202509&cn-reloaded=1"
+      "reference": "<a href='https://pratt.duke.edu/news/meng-ai-and-materials/?utm_source=newsletter&utm_medium=email&utm_content=INVENT%20TOMORROW%26%2339%3BS%20BUILDING%20BLOCKS%20%E2%9E%94&utm_campaign=pratt-blueprint-202509&cn-reloaded=1'>Read full news</a>"
     }
   ],
   "skills": [
