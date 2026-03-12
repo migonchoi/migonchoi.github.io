@@ -10,7 +10,7 @@
   $max-content-width: {{ site.max_width | default: "930px" }}
 );
 
-/* 테마 기본 모듈만 순서대로 로드 */
+/* 1. 테마 기본 모듈 순서대로 복구 */
 @use "themes";
 @use "layout";
 @use "typography";
@@ -30,12 +30,20 @@
 @use "font-awesome/solid";
 @use "font-awesome/regular";
 
-/* 박사님이 원하셨던 최소한의 폰트 설정만 남깁니다 */
+/* 2. 꼬여버린 레이아웃 강제 해제 */
+.post, .post.about, .post.cv {
+  display: block !important; /* flex 설정을 완전히 제거합니다 */
+}
+
+.profile {
+  float: right !important; /* 기본 위치인 오른쪽으로 강제 이동 */
+  width: 30% !important;
+  margin: 0 0 2rem 2rem !important;
+  position: static !important;
+}
+
+/* 3. 폰트 복구 */
 body {
   font-family: "Cambria", "Georgia", serif !important;
   line-height: 1.6 !important;
-}
-
-.post-content {
-  font-size: 1.1rem;
 }
