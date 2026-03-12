@@ -3,16 +3,13 @@
 ---
 @charset "utf-8";
 
-/* Built-in Sass modules */
 @use "sass:math";
 @use "sass:string";
 
-/* Configure design tokens */
 @use "variables" with (
-  $max-content-width: {{ site.max_width | default: "1100px" }}
+  $max-content-width: {{ site.max_width | default: "1000px" }}
 );
 
-/* Project partials */
 @use "themes";
 @use "layout";
 @use "typography";
@@ -22,83 +19,57 @@
 @use "publications";
 @use "components";
 @use "utilities";
-@use "distill";
 @use "cv";
-@use "tabs";
-@use "teachings";
-@use "typograms";
 @use "font-awesome/fontawesome";
 @use "font-awesome/brands";
 @use "font-awesome/solid";
 @use "font-awesome/regular";
 
-/* ==========================================================================
-   박사님 커스텀 스타일 (폰트 & 레이아웃)
-   ========================================================================== */
-
-/* 1. 전체 폰트 Cambria 설정 및 기본 줄 간격 */
+/* ---  폰트 --- */
 body {
-  font-family: "Cambria", "Georgia", "Times New Roman", serif !important;
+  font-family: "Cambria", serif !important;
   line-height: 1.65 !important;
-  -webkit-font-smoothing: antialiased;
 }
 
-/* 2. 본문 가독성 (문단 간격 및 양끝 정렬) */
-.post-content {
-  text-align: justify;
-  font-size: 1.1rem;
-  
-  p, li {
-    margin-bottom: 1.2rem !important;
-    line-height: 1.75 !important;
-  }
-}
-
-/* 3. 제목 간격 조정 */
-h3 {
-  margin-top: 2.5rem !important;
-  margin-bottom: 1.5rem !important;
-  font-weight: bold;
-}
-
-/* 4.프로필 사이드바 완전 왼쪽 분리 (데스크탑) */
+/* --- 아예 왼쪽으로 빼기 (사이드바 레이아웃) --- */
 @media (min-width: 768px) {
+  /* 본문 영역 전체를 두 칸으로 나눔 */
   .post {
     display: flex !important;
-    flex-direction: row !important;
     align-items: flex-start !important;
-    justify-content: flex-start !important;
+    gap: 50px !important; /* 사진과 글 사이의 확실한 간격 */
   }
 
+  /* 왼쪽: 사진과 연락처만 들어가는 기둥 */
   .profile {
-    width: 250px !important;      /* 사이드바 고정 너비 */
+    width: 250px !important;
     min-width: 250px !important;
-    margin-right: 4rem !important; /* 본문과 확실한 왼쪽 간격 */
-    float: none !important;        /* 본문이 파고들지 못하게 함 */
-    position: sticky !important;   /* 스크롤 시 사진 고정 */
-    top: 80px;
+    margin: 0 !important;
+    float: none !important; /* 글이 파고드는걸 원천 봉쇄 */
+    position: sticky !important;
+    top: 100px;
   }
 
+  /* 오른쪽: 글자만 들어가는 영역 */
   .post-content {
-    flex: 1 !important;           /* 남은 공간 전체 사용 */
-    max-width: 750px !important;
+    flex: 1 !important;
+    width: auto !important;
   }
 }
 
-/* 5. 모바일 화면 대응 */
+/* 모바일에서는 원래대로 위-아래 정렬 */
 @media (max-width: 767px) {
-  .profile {
-    width: 100% !important;
-    margin: 0 auto 2rem !important;
-    text-align: center;
-  }
+  .post { display: block !important; }
+  .profile { width: 100% !important; text-align: center; }
 }
 
-/* 6. 프로필 하단 연락처 정보 스타일 */
 .more-info {
   margin-top: 1.5rem;
   font-size: 0.95rem;
-  line-height: 1.6 !important;
-  color: #555;
-  text-align: left;
+  line-height: 1.5 !important;
+}
+
+.post-content {
+  text-align: justify;
+  font-size: 1.1rem;
 }
