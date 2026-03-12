@@ -57,3 +57,14 @@ h3 {
   margin-top: 2.5rem !important;
   margin-bottom: 1.5rem !important;
 }
+/* 사이드바 프로필과 본문 사이 간격 조정 */
+.profile {
+  margin-right: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* 본문 가독성 향상 */
+.post-content {
+  text-align: justify; /* 텍스트 양끝 정렬 (선택사항) */
+  font-size: 1.1rem;
+}
