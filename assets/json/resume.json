@@ -3,14 +3,30 @@
     "name": "Migon Choi",
     "label": "Ph.D. in Materials Science and Engineering",
     "email": "migon.choi@duke.edu",
-    "url": "https://www.linkedin.com/in/migonchoi1998",
+    "url": "https://migonchoi.github.io/",
     "summary": "AI Scientist focused on decision-centric machine learning for scientific discovery.",
     "location": {
       "city": "Durham",
       "countryCode": "US",
       "region": "NC"
     },
-    "profiles": []
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "migonchoi1998",
+        "url": "https://www.linkedin.com/in/migonchoi1998"
+      },
+      {
+        "network": "GitHub",
+        "username": "migonchoi",
+        "url": "https://github.com/migonchoi"
+      },
+      {
+        "network": "Google Scholar",
+        "username": "Migon Choi",
+        "url": "https://scholar.google.com/citations?user=qu50J4MAAAAJ&hl=en"
+      }
+    ]
   },
   "education": [
     {
