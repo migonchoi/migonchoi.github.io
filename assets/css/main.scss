@@ -10,6 +10,7 @@
   $max-content-width: {{ site.max_width | default: "1100px" }}
 );
 
+/* 기본 테마 모듈 로드 */
 @use "themes";
 @use "layout";
 @use "typography";
@@ -25,49 +26,60 @@
 @use "font-awesome/solid";
 @use "font-awesome/regular";
 
-/* --- [1] 박사님 전용 폰트 (Cambria) --- */
+/* --- [1] 전체 폰트 및 기본 스타일 --- */
 body {
   font-family: "Cambria", serif !important;
   line-height: 1.65 !important;
 }
 
-/* --- [2] About 페이지 전용 좌우 분리 레이아웃 (CV 영향 없음) --- */
+.post-content {
+  text-align: justify;
+  font-size: 1.1rem;
+}
+
+/* --- [2] About Me 페이지 전용 (CV 페이지에 영향 없음) --- */
 @media (min-width: 992px) {
-  /* .about 클래스가 있을 때만 flex 적용 */
+  /* About 레이아웃일 때만 좌우 분할 */
   .post.about {
     display: flex !important;
     flex-direction: row !important;
     align-items: flex-start !important;
-    gap: 60px !important; /* 사진과 본문 사이 간격 */
+    gap: 60px !important; 
   }
 
-  /* 왼쪽 프로필 기둥 */
+  /* 왼쪽 프로필 전용 칸 */
   .post.about .profile {
-    width: 260px !important;
-    min-width: 260px !important;
+    width: 250px !important;
+    min-width: 250px !important;
     margin: 0 !important;
+    float: none !important; /* 글자가 파고드는 것 방지 */
     position: sticky !important;
     top: 100px;
-    float: none !important;
   }
 
-  /* 오른쪽 본문 영역 */
+  /* 오른쪽 본문 전용 칸 */
   .post.about .post-content {
     flex: 1 !important;
     width: auto !important;
   }
 }
 
-/* --- [3] 기타 스타일 정돈 --- */
-.post-content {
-  text-align: justify;
-  font-size: 1.1rem;
-  p { margin-bottom: 1.5rem !important; }
+/* 모바일에서는 위아래로 정렬 */
+@media (max-width: 991px) {
+  .post.about { display: block !important; }
+  .post.about .profile { width: 100% !important; text-align: center; margin-bottom: 2rem !important; }
 }
 
+/* 프로필 하단 정보 스타일 */
 .more-info {
   margin-top: 1.5rem;
   font-size: 0.95rem;
-  line-height: 1.5 !important;
+  line-height: 1.6 !important;
   color: #555;
+}
+
+/* --- [3] CV 페이지 레이아웃 복구 --- */
+/* CV 페이지의 flex 영향을 제거하여 원래대로 리스트가 보이게 합니다. */
+.post.cv {
+  display: block !important;
 }
