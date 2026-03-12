@@ -6,7 +6,7 @@ nav: true
 nav_order: 2
 cv_pdf: Migon_Choi_CV.pdf
 
-# 박사님의 resume.json 데이터를 불러오는 핵심 설정입니다.
+# 여기서 resume.json을 불러오라고 명시해야 아인슈타인이 사라집니다!
 data: resume
 
 cv_sections:
