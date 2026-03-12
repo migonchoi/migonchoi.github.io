@@ -14,9 +14,9 @@ profile:
     <p>Durham, NC</p>
     <p>migon.choi@duke.edu</p>
 
-news: true  # News 섹션 켜기
-selected_papers: true # Selected Publications 섹션 켜기
-social: true # 아이콘 켜기
+news: false  # News 섹션 켜기
+selected_papers: false # Selected Publications 섹션 켜기
+social: false # 아이콘 켜기
 
 # 필요 없다고 하신 부분들 끄기
 announcements:
