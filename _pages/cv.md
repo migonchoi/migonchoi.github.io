@@ -1,13 +1,8 @@
 ---
 layout: cv
-permalink: /cv/
 title: CV
+permalink: /cv/
 nav: true
-nav_order: 1
-cv_pdf: Migon_Choi_CV.pdf
-cv_format: jsonresume
-cv_data: assets/json/resume.json
-description: AI Scientist focused on decision-centric machine learning for scientific discovery.
-toc:
-  sidebar: left
+nav_order: 2
+cv_pdf: Migon_Choi_CV.pdf  # assets/pdf/ 폴더에 있는 실제 파일명과 똑같이 써주세요!
 ---
