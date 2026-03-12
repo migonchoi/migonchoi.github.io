@@ -12,10 +12,10 @@ profile:
     <p>Duke University</p>
     <p>Durham, NC</p>
     <p>migon.choi@duke.edu</p>
-    <div class="social" style="font-size: 1.4rem; margin-top: 10px; display: flex; gap: 15px;">
+    <div class="social" style="font-size: 1.4rem; margin-top: 12px; display: flex; gap: 15px;">
       <a href="https://www.linkedin.com/in/migonchoi1998" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://scholar.google.com/citations?user=qu50J4MAAAAJ&hl=en" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
       <a href="https://github.com/migonchoi" title="GitHub"><i class="fa-brands fa-github"></i></a>
-      <a href="#" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
     </div>
 ---
 
