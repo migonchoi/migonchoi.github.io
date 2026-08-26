@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='https://mse.duke.edu/'>Duke University</a>. Materials Science and Engineering.
+subtitle: AI × Materials Science × Autonomous Experimentation
 
 profile:
   align: left
@@ -11,7 +11,7 @@ profile:
   more_info: >
     <p>Duke University</p>
     <p>Durham, NC</p>
-    <p>migon.choi@duke.edu</p>
+    <p>megon98@gmail.com</p>
     <div class="social" style="font-size: 1.4rem; margin-top: 12px; display: flex; gap: 15px;">
       <a href="https://www.linkedin.com/in/migonchoi1998" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       <a href="https://scholar.google.com/citations?user=qu50J4MAAAAJ&hl=en" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
@@ -20,16 +20,18 @@ profile:
 ---
 
 ### About Me
-I am a **Ph.D. in Materials Science from Duke University** (defended recently, graduating May 2026). My research bridges the gap between traditional experimental science and modern computational methods. I specialize in integrating **experimental perovskite science** with advanced machine-learning approaches, including **Bayesian models, uncertainty quantification, and active learning** to accelerate materials discovery.
 
-### Research Expertise
+I am a materials scientist working at the intersection of experimental science, machine learning, and data-driven decision-making.
 
-With a background that spans both the laboratory bench and data-driven modeling, I focus on developing ML solutions for "small-data" scientific problems where physical intuition is as critical as data quality.
+My research focuses on making machine learning useful for real experimental systems — particularly when data are small, noisy, heterogeneous, and expensive to acquire.
 
-* **Materials Synthesis & Characterization:** Deep fundamental understanding of perovskite systems and extensive hands-on experimental expertise.
-  
-* **Data Engineering for Science:** Expert in structuring and cleaning complex, noisy scientific datasets for robust physical modeling.
-  
-* **Applied Machine Learning:** Proven ability to design, interpret, and deploy ML models (Bayesian optimization, etc.) tailored for materials property prediction.
+**Selected interests**
 
-If you’re interested in discussing research collaborations or the future of data-driven materials science, please feel free to contact me via [email](mailto:migon.choi@duke.edu)!
+- Scientific machine learning
+- Uncertainty quantification
+- Autonomous experimentation
+- Materials data systems
+
+I am particularly interested in developing systems that move beyond prediction toward uncertainty-aware decision-making and closed-loop experimentation.
+
+If you’re interested in research collaborations or data-driven materials science, feel free to reach out via [email](mailto:megon98@gmail.com).
