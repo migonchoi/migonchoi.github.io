@@ -10,7 +10,6 @@ profile:
   image_circular: true
   more_info: >
     <p>Duke University</p>
-    <p>Durham, NC</p>
     <p>megon98@gmail.com</p>
     <div class="social" style="font-size: 1.4rem; margin-top: 12px; display: flex; gap: 15px;">
       <a href="https://www.linkedin.com/in/migonchoi1998" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
