@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "post-beyond-the-hype-of-self-driving-labs-what-ai-for-science-needs-to-succeed",
+        },{id: "post-",
+        
+          title: "",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/2026-08-26-experimental-scientists-in-the-age-of-ai/";
+          
+        },
+      },{id: "post-beyond-the-hype-of-self-driving-labs-what-ai-for-science-needs-to-succeed",
         
           title: "Beyond the Hype of Self-Driving Labs: What AI for Science Needs to Succeed...",
         
