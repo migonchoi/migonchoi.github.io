@@ -18,14 +18,14 @@ AI is rapidly taking over many kinds of work, and we are hearing more and more a
 > *“I feel like I should start doing something too. But where am I supposed to begin?”*
 
 I have worked in both research laboratories and industry, and I started my research career as an experimental scientist. Since 2022, I have been actively incorporating AI and machine learning into experimental science. So rather than writing from the perspective of someone trained in computer science, I want to write from the perspective of someone who started in experimental research, learned AI, and then applied it to real scientific problems.
-
+<br>
 
 ## The Limits of LLM Hype in the Lab
 
 Recently, especially through early 2026, expectations around AI, especially large language models (LLMs), were extremely high. At times, the conversation made it sound as though LLMs would eventually be able to do almost everything, leaving experimental scientists with little more than the role of generating data. I do not agree.
 
 LLMs are undeniably useful. In particular, I believe they will continue to play an important role in reading information from unstructured text such as scientific papers, identifying relationships between different concepts, and extracting data from large bodies of literature to build datasets. But that does not mean I expect LLMs to solve every fundamental scientific problem. Instead, I think we will continue to need new models and systems specialized for individual scientific problems. And at least for now, I believe we may be entering a period in which the domain insights held by experimental scientists become more valuable than before.
-
+<br>
 
 ## So How Can Experimental Scientists Make Better Use of Those Insights?
 
@@ -47,7 +47,7 @@ And finally, you decide what experiment to do next.
 * Why did you decide to run another replicate?
 
 Most of these decisions are never fully documented in scientific papers. In many cases, they are not recorded in the data files either. But real science progresses through exactly this kind of continuous sequence of small decisions. And I think this is one of the most interesting areas in AI for Science today.
-
+<br>
 
 ## The Gap Between Computation and Autonomous Labs
 
@@ -67,7 +67,7 @@ So what exists between these two areas? I think there is still an enormous amoun
 * And when new results come in, how should we choose the next experiment?
 
 These are all places where the knowledge of experimental scientists can meet AI. So the point I want to make is simple. **The judgments you make so naturally in the laboratory, sometimes almost unconsciously, may be far more important and valuable pieces of information than you realize.**
-
+<br>
 
 ## Then What Do You Need to Do to Connect Those Insights to an Actual AI System?
 
@@ -86,7 +86,7 @@ A short course may be enough. So might a good review paper. You should understan
 Start by asking which parts of these problems might be improved with the help of AI.
 
 Once you have developed some understanding of AI and algorithms, I also recommend collaborating with methodologists. The person writing the actual code and applying the algorithm to your domain may very well be the experimental scientist. In many cases, that can actually be much more powerful. But there is a great deal to gain from working with someone who studies the methodology deeply when it comes to questions such as whether your statistical assumptions are appropriate, whether you are misinterpreting the model, whether your validation is sufficient, or whether you are placing too much trust in the algorithm.
-
+<br>
 
 ## A Simple Exercise for Today
 
