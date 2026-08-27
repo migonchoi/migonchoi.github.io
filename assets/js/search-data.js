@@ -30,15 +30,15 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "post-",
+        },{id: "post-will-ai-replace-experimental-scientists-why-your-lab-intuition-is-more-valuable-than-ever",
         
-          title: "",
+          title: "Will AI Replace Experimental Scientists? Why Your Lab Intuition Is More Valuable Than...",
         
-        description: "",
+        description: "Why experimental scientists&#39; domain knowledge may become more valuable in the age of AI—and how to start connecting that knowledge to data and algorithms.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/2026-08-26-experimental-scientists-in-the-age-of-ai/";
+            window.location.href = "/blog/2026/experimental-scientists-in-the-age-of-ai/";
           
         },
       },{id: "post-beyond-the-hype-of-self-driving-labs-what-ai-for-science-needs-to-succeed",
