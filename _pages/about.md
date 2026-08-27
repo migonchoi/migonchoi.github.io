@@ -9,12 +9,14 @@ profile:
   image: prof_pic.jpg
   image_circular: true
   more_info: >
-    <p>Duke University</p>
-    <p>megon98@gmail.com</p>
-    <div class="social" style="font-size: 1.4rem; margin-top: 12px; display: flex; gap: 15px;">
-      <a href="https://www.linkedin.com/in/migonchoi1998" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://scholar.google.com/citations?user=qu50J4MAAAAJ&hl=en" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-      <a href="https://github.com/migonchoi" title="GitHub"><i class="fa-brands fa-github"></i></a>
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 10px;">
+      <p style="margin: 0;">Duke University</p>
+      <p style="margin: 0.25rem 0 0 0;">megon98@gmail.com</p>
+      <div class="social" style="font-size: 1.4rem; margin-top: 12px; display: flex; justify-content: center; gap: 15px;">
+        <a href="https://www.linkedin.com/in/migonchoi1998" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://scholar.google.com/citations?user=qu50J4MAAAAJ&hl=en" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+        <a href="https://github.com/migonchoi" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      </div>
     </div>
 ---
 
