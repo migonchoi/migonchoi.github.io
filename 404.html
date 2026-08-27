@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<script>
+  // 링크드인 등 외부 추적 파라미터(?li_fat_id 등) 제거 후 원본 URL로 리다이렉트
+  var cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+  if (window.location.search) {
+    window.location.replace(cleanUrl);
+  }
+</script>
