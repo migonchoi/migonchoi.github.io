@@ -38,7 +38,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/experimental-scientists-in-the-age-of-ai/";
+            window.location.href = "/blog/experimental-scientists-ai/";
           
         },
       },{id: "post-beyond-the-hype-of-self-driving-labs-what-ai-for-science-needs-to-succeed",
