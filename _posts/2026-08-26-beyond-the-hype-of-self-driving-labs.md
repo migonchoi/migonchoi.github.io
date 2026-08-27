@@ -19,7 +19,11 @@ At their core, however, many of these efforts are trying to build the same funda
 
 > *Experiment → Data Representation → Model → Decision → Experiment Again*
 
-![Experiment–data–model–decision loop](/assets/img/blog/self-driving-lab-loop.png)
+<div style="text-align: center; margin: 1.5rem 0;">
+  <img src="/assets/img/blog/self-driving-lab-loop.png"
+       alt="Experiment–data–model–decision loop"
+       style="width: 55%; max-width: 620px; height: auto;">
+</div>
 
 While completing my PhD at Duke University and later interacting with technology companies and the venture capital community, I found myself thinking more deeply about what actually makes this loop work.
 
