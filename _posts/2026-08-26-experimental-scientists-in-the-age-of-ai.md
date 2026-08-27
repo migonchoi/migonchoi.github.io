@@ -1,19 +1,16 @@
 ---
-
 layout: post
 title: "Will AI Replace Experimental Scientists? Why Your Lab Intuition Is More Valuable Than Ever"
 date: 2026-08-26
 description: "Why experimental scientists' domain knowledge may become more valuable in the age of AI—and how to start connecting that knowledge to data and algorithms."
 tags:
-
-* AI for Science
-* experimental science
-* machine learning
-* autonomous experimentation
-* research
-  categories:
-* STEM Research & Career
-
+  - AI for Science
+  - experimental science
+  - machine learning
+  - autonomous experimentation
+  - research
+categories:
+  - STEM Research & Career
 ---
 
 AI is rapidly taking over many kinds of work, and we are hearing more and more about AI and machine learning in research as well. Now that people are even talking about “vibe coding,” experimental scientists may find themselves thinking,
@@ -104,8 +101,3 @@ Then try to write down as many of those decisions as possible.
 The answers to these questions may be more than just research know-how. If you eventually build an AI system, these judgments could become features, constraints, or objectives. In some cases, they could become feedback signals or decision rules. Before asking how you might hand your experiments over to AI, first write down the decisions you are already making.
 
 The most important asset of an experimental scientist may not simply be the ability to perform an experiment. It may be knowing what to observe and knowing what judgments to make based on what you observe. And in the age of AI, I believe experimental scientists who can make those judgments explicit and connect them to data and algorithms may become more valuable than ever.
-
-
-It may be knowing **what to observe** and knowing **what judgments to make based on what you observe**.
-
-And in the age of AI, I believe experimental scientists who can make those judgments explicit and connect them to data and algorithms may become more valuable than ever.
