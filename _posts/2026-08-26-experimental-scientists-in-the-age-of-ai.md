@@ -2,6 +2,7 @@
 layout: post
 title: "Will AI Replace Experimental Scientists? Why Your Lab Intuition Is More Valuable Than Ever"
 date: 2026-08-26
+permalink: /blog/experimental-scientists-ai/
 description: "Why experimental scientists' domain knowledge may become more valuable in the age of AI—and how to start connecting that knowledge to data and algorithms."
 tags:
   - AI for Science
