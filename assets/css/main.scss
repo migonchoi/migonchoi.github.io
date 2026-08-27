@@ -47,3 +47,17 @@ body {
   font-family: "Cambria", "Georgia", serif !important;
   line-height: 1.6 !important;
 }
+
+/* 4. 블로그 글 문단 및 제목 간격 조정 */
+.post article h2,
+.post .post-content h2,
+.post h2 {
+  margin-top: 2.2rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.post article p,
+.post .post-content p,
+.post p {
+  margin-bottom: 1.3rem;
+}
