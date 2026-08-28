@@ -30,6 +30,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
+        },{id: "nav-work-with-me",
+          title: "Work With Me",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/work-with-me/";
+          },
         },{id: "post-will-ai-replace-experimental-scientists-why-your-lab-intuition-is-more-valuable-than-ever",
         
           title: "Will AI Replace Experimental Scientists? Why Your Lab Intuition Is More Valuable Than...",
