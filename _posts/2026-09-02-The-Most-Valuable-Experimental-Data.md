@@ -57,7 +57,7 @@ The two values overlap within error.
 
 If you ask an AI, *"Why did this hypothesis fail?"*, it can accurately reconstruct the explanations the paper itself already offers: molecular size, steric constraints, Lewis basicity, and differences in how each molecule interacts with the film surface. The problem comes next.
 
-Ask, *"So what molecule should we screen for next to avoid this trap?"*, and the AI can pull a list of candidates with suitable LUMO values from the literature. But it can't predict whether that molecule will actually aggregate or spread evenly on a film surface. That's a property you only learn by making the solution and spin-coating it yourself, which is exactly what shows up later in the paper as the solubility gap between F4TCNQ (~0.5 mg/mL) and the Mo compound (~30 mg/mL).
+Ask, *"So what molecule should we screen for next to avoid this trap?"*, and the AI can pull a list of candidates with suitable LUMO values from the literature. But that first-pass screening still does not tell you reliably whether the molecule will aggregate or spread evenly on the actual film surface. Ultimately, that behavior has to be validated experimentally by making the solution and seeing how it behaves during deposition, which is exactly what shows up later in the paper as the solubility gap between F4TCNQ (~0.5 mg/mL) and the Mo compound (~30 mg/mL).
 
 > **AI can quickly build first-order hypotheses from concepts like energy-level alignment. Experimental intuition becomes especially valuable when those hypotheses are shaped by second-order effects such as how a molecule actually behaves at the film surface.**
 
@@ -65,7 +65,7 @@ Ask, *"So what molecule should we screen for next to avoid this trap?"*, and the
 
 ## 2. Experimental Section: Numbers With No Reasons
 
-Reading the Experimental Section, the numbers are precise, but *why this number?* is almost never explained. Feed this section to an AI and it reproduces the protocol text well. But it can't invent a rationale that simply isn't written in the paper.
+Reading the Experimental Section, the numbers are precise, but *why this number?* is almost never explained. Feed this section to an AI and it reproduces the protocol text well. But when the rationale is not written in the paper, it can at best infer one; it cannot know whether that inferred rationale was actually what guided the experimenter.
 
 **Why Sequential Deposition Was Chosen**
 
@@ -73,12 +73,12 @@ The paper states that it demonstrates p-type doping via a sequential approach, d
 
 Compared with simultaneous deposition — as in Euvrard et al.'s F4TCNQ work, where perovskite and dopant are deposited together — this choice comes from hands-on experience. The solvent in a dopant solution applied mid-spin-coat could redissolve already-formed crystals or disrupt the morphology. The tradeoff is that the dopant then stays confined near the surface rather than penetrating deeply, as confirmed later by the 3D TOF-SIMS results in Figure 6.
 
-And this tradeoff isn't something an AI would spontaneously think to raise at the experimental-design stage.
+And unless this tradeoff is represented in the literature, prior experimental records, or the prompt itself, there is no guarantee that an AI system would identify it at the experimental-design stage.
 
 **The "Shelf Life" of Precursor and Dopant Solutions**
 
 * Perovskite precursor solutions: filtered and spin-coated without an antisolvent **within 30 minutes** of preparation
-* Dopant solutions (100 μL): deposited onto each film **within 30 minutes** of preparation. Only someone who understands the oxidation kinetics of these solutions over time grasps what that number actually means.
+* Dopant solutions (100 μL): deposited onto each film **within 30 minutes** of preparation. That 30-minute window carries meaning that is easy to miss unless you understand how the solutions change through oxidation over time.
 
 When an AI auto-generates a protocol or ports it to a robotic platform, this kind of time-sensitive window — degradation kinetics — is easy to miss unless a person explicitly flags it.
 
@@ -86,7 +86,7 @@ When an AI auto-generates a protocol or ports it to a robotic platform, this kin
 
 In halide-perovskite film fabrication, antisolvent quenching — dripping a nonpolar solvent during spin-coating to trigger rapid crystallization — is close to standard practice. Yet this paper explicitly notes that the films were prepared **"without using an antisolvent."** The manuscript does not explicitly state the reason, but this can be attributed to the oxidation sensitivity of Sn and the phase-separation issues observed in mixed Sn-Pb perovskites.
 
-It is an exception to the general protocol that only someone who has directly worked with this materials system can judge.
+It is an exception to the general protocol whose significance is much easier to recognize with direct experience in this materials system.
 
 **Subtle Differences in Spin-Coating and Annealing Conditions**
 
@@ -98,7 +98,7 @@ It is an exception to the general protocol that only someone who has directly wo
 
 The dopant layer needs to be thinner and stay confined to the surface, hence the lower rpm and shorter spin time. For annealing, the higher temperature but shorter time reflects a simultaneous set of constraints: solvent evaporation rate, the dopant's thermal decomposition temperature, and the need to avoid recrystallizing the already-formed perovskite.
 
-> **AI can faithfully reproduce "try these conditions" as text. But it cannot generate the physical or chemical reasoning behind why those specific values were chosen when that reasoning isn't written in the paper. It exists only in the experimenter's head.**
+> **AI can faithfully reproduce “try these conditions” as text and can propose plausible physical or chemical rationales. But when those rationales are not documented, it cannot know which considerations actually led the experimenter to choose those specific values.**
 
 ---
 
@@ -114,7 +114,7 @@ SnI2 is highly susceptible to Sn2+ → Sn4+ oxidation. Actual O2/H2O levels vary
 
 At the very end of the Experimental Section, we state that we ultimately analyzed only the runs in which the undoped control samples showed consistently low carrier density, in the range of roughly **10¹⁴ to 10¹⁵ cm⁻³**. This allowed us to rule out the possibility that the shift in carrier density arose incidentally from the sample's exposure to oxygen.
 
-In effect, this means that on days when glovebox conditions were poor and even the undoped sample's carrier density spiked, that run was excluded from analysis. Where exactly to draw that threshold isn't in any standard manual. It's a feel built up only through many repeated measurements, learning what range counts as "normal" versus "an off batch."
+In effect, this means that on days when glovebox conditions were poor and even the undoped sample's carrier density spiked, that run was excluded from analysis. Where exactly to draw that threshold isn't in any standard manual. It is a judgment built up through repeated measurements and experience with what counts as a normal versus an anomalous batch.
 
 To get an AI to judge whether a given dataset is trustworthy, someone first has to put this batch-filtering criterion into words for it.
 
@@ -128,7 +128,7 @@ The most technically interesting parts of this paper are actually the places whe
 
 The paper notes that when one configuration produced unclear signals, likely because of contact issues, only the results from the other configuration were used. In a six-terminal Hall bar measured in two configurations, if one side looks off, it gets attributed to a contact problem and discarded. Judging when a signal is *"unclear,"* without any quantitative threshold, is exactly the kind of hands-on know-how that's hard to formalize. Building a robotic automation platform around this would require labeled training data for a quality classifier.
 
-And whoever assigns those labels still has to be an experienced experimentalist.
+At least initially, those labels would likely need to come from experienced experimentalists who know what failure modes look like in practice.
 
 **TOF-SIMS — Figure 6, "Assessment of Doping Efficiency"**
 
@@ -142,7 +142,7 @@ The dopant quantification process turns out to require several layers of correct
 * The authors verify this directly in Figures S5 and S9 by comparing integrated intensities between films of matched thickness.
 * Ultimately, the Mo compound is quantified by ICP-MS, and the F4TCNQ signal is calibrated indirectly against it using the known F/Mo ratio in the Mo sample.
 
-> **This entire correction logic — knowing not to trust raw intensity at face value — is something only someone who has repeatedly run into the instrument's quirks could design.**
+> **This correction logic comes from recognizing instrument-specific failure modes that are difficult to infer from the raw data alone and are often learned through repeated experience with the instrument.**
 
 If an AI interpreted this TOF-SIMS data automatically without accounting for matrix effects or sputter-rate differences caused by surface roughness, it could conclude that *"doping concentration is X times higher"* purely from the raw intensity ratio. That would be the wrong conclusion.
 
@@ -152,7 +152,7 @@ The paper states that because all measured core levels are referenced to the C 1
 
 Since every XPS peak is calibrated against C 1s at **284.8 eV**, the data cannot be used to judge absolute Fermi-level shifts before and after doping. Instead, we use only the splitting of the Sn 3d peak — **486.47 eV and 487.51 eV**, a gap of about **1.0 eV** — as chemical-state evidence of a Sn2+/Sn4+ oxidation-state change.
 
-Knowing exactly where the line falls between *what a measurement can tell you* and *what it can't* is something only someone who has run XPS repeatedly and felt the limits of its referencing scheme can draw precisely.
+Knowing exactly where to draw the line between what a measurement supports and what it does not often comes from repeated experience with the instrument and its referencing limitations.
 
 **Film Thickness: The Baseline for Every Calculation**
 
@@ -162,7 +162,7 @@ Both conductivity and doping-efficiency calculations depend entirely on film thi
 
 Depending on exactly where that thickness was measured — near a scratch edge versus the center of the film — and exactly where the profilometer probe traced, the final conductivity value can shift meaningfully. This is a detail the paper never specifies. It rests entirely on the physical precision of whoever performed the measurement.
 
-> **AI has no trouble applying the equations correctly. But judging how much you can trust a given input value is the domain of someone who has physically felt the limitations of the instrument.**
+> **AI can readily apply the equations once the inputs are given. The harder problem is deciding how trustworthy those inputs are—a judgment that often depends on knowing how the measurement was physically made and where its uncertainty comes from.**
 
 ---
 
@@ -196,7 +196,7 @@ Having walked through this paper with AI from start to finish, the boundary came
 * Correctly applying equations such as doping efficiency and resistivity
 * Synthesizing multiple papers to generate candidate molecules or experimental conditions
 
-**What Still Needs an Experimenter's Intuition**
+**Where Experimental Intuition Still Matters**
 
 * Reinterpreting a failed hypothesis through second-order variables, such as actual surface behavior: solubility, aggregation, and adsorption
 * Knowing the *why* hidden behind protocol numbers such as concentration, temperature, and time, especially time-sensitive windows like precursor aging or dopant aggregation kinetics
@@ -206,7 +206,7 @@ All three of these are things that rarely get written explicitly into a paper.
 
 They exist as **tacit knowledge** inside the experimenter's head.
 
-If you wanted to port this knowledge into an automated robotic platform or an AI experimental-design tool, someone would first have to do the work of turning that tacit knowledge into explicit rules.
+If you wanted to port this knowledge into an automated robotic platform or an AI experimental-design tool, someone would first have to do the work of making that tacit knowledge observable—through explicit rules, annotations, examples, or experimental records that an AI system can learn from.
 
 And the person who can do that work is you: the one right now checking the O2 level in front of the glovebox, listening for a strange sound from the spin-coater, and sensing that something's off about a TOF-SIMS signal.
 
