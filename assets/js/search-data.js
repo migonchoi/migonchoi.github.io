@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/work-with-me/";
           },
-        },{id: "post-will-ai-replace-experimental-scientists-why-your-lab-intuition-is-more-valuable-than-ever",
+        },{id: "post-the-most-valuable-experimental-data-may-be-the-data-you-never-record",
+        
+          title: "The Most Valuable Experimental Data May Be the Data You Never Record",
+        
+        description: "The Most Valuable Experimental Data May Be the Data You Never Record",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/The-Most-Valuable-Experimental-Data/";
+          
+        },
+      },{id: "post-will-ai-replace-experimental-scientists-why-your-lab-intuition-is-more-valuable-than-ever",
         
           title: "Will AI Replace Experimental Scientists? Why Your Lab Intuition Is More Valuable Than...",
         
