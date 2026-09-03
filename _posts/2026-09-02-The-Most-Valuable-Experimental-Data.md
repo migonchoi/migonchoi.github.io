@@ -172,12 +172,14 @@ Depending on exactly where that thickness was measured — near a scratch edge v
 
 There are also variables that don't appear anywhere in this paper, but that anyone trying to reproduce the same protocol will inevitably run into:
 
-* **Glass-substrate pretreatment:** piranha/plasma etching time affects surface wetting properties and, in turn, initial nucleation density during spin-coating.
+* **Glass-substrate pretreatment:** plasma etching time affects surface wetting properties and, in turn, initial nucleation density during spin-coating.
 * **Micro-gaps between the shadow mask and substrate:** during Au electrode deposition, these affect electrode-edge sharpness, then effective Hall-bar channel width, then systematic error in conductivity calculations.
 * **Epoxy curing degree:** measuring before full cure allows residual solvent to affect device characteristics.
 * **Pipetting precision:** volumes such as 53 μL and 100 μL affect film-thickness uniformity. For robotic automation, even dispense speed and height need to be standardized for reproducibility.
 
-None of these variables get fully written down in any paper or SOP, largely because even the experimenter handles most of them unconsciously.
+In this study, these experimental conditions were kept consistent across repeated experiments; the point here is that changes in any of them could introduce variability when the protocol is reproduced under different conditions.
+
+None of these variables get fully written down in any paper, largely because even the experimenter handles most of them unconsciously.
 
 But this is often exactly the answer to:
 
