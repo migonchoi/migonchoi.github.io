@@ -2,7 +2,7 @@
 layout: page
 title: Work With Me
 permalink: /work-with-me/
-nav: true
+nav: false
 nav_order: 5
 ---
 
