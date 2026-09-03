@@ -97,6 +97,7 @@ It is an exception to the general protocol that only someone who has directly wo
 | Spin-coating |  5000 rpm, 100 s | 2000 rpm, 45 s |
 | Annealing    |     90°C, 20 min |  100°C, 10 min |
 
+
 The dopant layer needs to be thinner and stay confined to the surface, hence the lower rpm and shorter spin time. For annealing, the higher temperature but shorter time reflects a simultaneous set of constraints: solvent evaporation rate, the dopant's thermal decomposition temperature, and the need to avoid recrystallizing the already-formed perovskite.
 
 > **AI can faithfully reproduce "try these conditions" as text. But it cannot generate the physical or chemical reasoning behind why those specific values were chosen when that reasoning isn't written in the paper. It exists only in the experimenter's head.**
