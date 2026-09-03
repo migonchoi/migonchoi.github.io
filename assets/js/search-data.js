@@ -30,13 +30,6 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "nav-work-with-me",
-          title: "Work With Me",
-          description: "",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/work-with-me/";
-          },
         },{id: "post-the-most-valuable-experimental-data-may-be-the-data-you-never-record",
         
           title: "The Most Valuable Experimental Data May Be the Data You Never Record",
