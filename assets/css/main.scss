@@ -47,3 +47,19 @@ body {
   font-family: "Cambria", "Georgia", serif !important;
   line-height: 1.6 !important;
 }
+
+/* Make bold text clearly bold */
+.post-content strong {
+  font-weight: 700;
+}
+
+/* Add space below tables */
+.post-content table {
+  margin-bottom: 1.5rem;
+}
+
+/* Keep blockquotes the same size as body text */
+.post-content blockquote {
+  font-size: 1em;
+  line-height: 1.6;
+}
