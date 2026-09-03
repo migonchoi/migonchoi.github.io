@@ -67,7 +67,7 @@ Ask, *"So what molecule should we screen for next to avoid this trap?"*, and the
 
 Reading the Experimental Section, the numbers are precise, but *why this number?* is almost never explained. Feed this section to an AI and it reproduces the protocol text well. But it can't invent a rationale that simply isn't written in the paper.
 
-### Why Sequential Deposition Was Chosen
+**Why Sequential Deposition Was Chosen**
 
 The paper states that it demonstrates p-type doping via a sequential approach, depositing the perovskite film first and the dopant afterward, specifically to keep the doping step from disturbing perovskite film quality.
 
@@ -77,20 +77,20 @@ The tradeoff is that the dopant then stays confined near the surface rather than
 
 And this tradeoff isn't something an AI would spontaneously think to raise at the experimental-design stage.
 
-### The "Shelf Life" of Precursor and Dopant Solutions
+**The "Shelf Life" of Precursor and Dopant Solutions**
 
 * Perovskite precursor solutions: filtered and spin-coated without an antisolvent **within 30 minutes** of preparation
 * Dopant solutions (100 μL): deposited onto each film **within 30 minutes** of preparation. Only someone who understands the oxidation kinetics of these solutions over time grasps what that number actually means.
 
 When an AI auto-generates a protocol or ports it to a robotic platform, this kind of time-sensitive window — degradation kinetics — is easy to miss unless a person explicitly flags it.
 
-### Deliberately Omitting the Antisolvent Step
+**Deliberately Omitting the Antisolvent Step**
 
 In standard halide-perovskite film fabrication, antisolvent quenching — dripping a nonpolar solvent during spin-coating to trigger rapid crystallization — is close to standard practice. Yet this paper explicitly notes that the films were prepared **"without using an antisolvent."** The manuscript does not explicitly state the reason, but this can be attributed to the oxidation sensitivity of Sn and the phase-separation issues observed in mixed Sn-Pb perovskites.
 
 It is an exception to the general protocol that only someone who has directly worked with this materials system can judge.
 
-### Subtle Differences in Spin-Coating and Annealing Conditions
+**Subtle Differences in Spin-Coating and Annealing Conditions**
 
 | Step         | Perovskite Layer |   Dopant Layer |
 | ------------ | ---------------: | -------------: |
@@ -108,11 +108,11 @@ The dopant layer needs to be thinner and stay confined to the surface, hence the
 
 The paper simply states that all processing was done in an N2 glovebox. But a great deal hides behind that one line.
 
-### Actual O2/H2O ppm Levels in the Glovebox
+**Actual O2/H2O ppm Levels in the Glovebox**
 
 SnI2 is highly susceptible to Sn2+ → Sn4+ oxidation. Actual O2/H2O levels vary from glovebox to glovebox. Even within the same glovebox, they vary day to day depending on the purge cycle and load-lock wait time. This can become a hidden source of batch-to-batch variability.
 
-### The Data-Filtering Criterion the Paper Discloses About Itself
+**The Data-Filtering Criterion the Paper Discloses About Itself**
 
 At the very end of the Experimental Section, the authors state that they ultimately analyzed only the runs in which the undoped control samples showed consistently low carrier density, in the range of roughly **10¹⁴ to 10¹⁵ cm⁻³**. This allowed them to rule out the possibility that the shift in carrier density arose incidentally from the sample's exposure to oxygen.
 
@@ -126,13 +126,13 @@ To get an AI to judge whether a given dataset is trustworthy, someone first has 
 
 The most technically interesting parts of this paper are actually the places where we openly acknowledge the limits of our own measurements.
 
-### Hall Measurement — Figure 5
+**Hall Measurement — Figure 5**
 
 The paper notes that when one configuration produced unclear signals, likely because of contact issues, only the results from the other configuration were used. In a six-terminal Hall bar measured in two configurations, if one side looks off, it gets attributed to a contact problem and discarded. Judging when a signal is *"unclear,"* without any quantitative threshold, is exactly the kind of hands-on know-how that's hard to formalize. Building a robotic automation platform around this would require labeled training data for a quality classifier.
 
 And whoever assigns those labels still has to be an experienced experimentalist.
 
-### TOF-SIMS — Figure 6, "Assessment of Doping Efficiency"
+**TOF-SIMS — Figure 6, "Assessment of Doping Efficiency"**
 
 The paper states plainly that TOF-SIMS cannot generally be considered quantitative without a standard.
 
@@ -148,7 +148,7 @@ The dopant quantification process turns out to require several layers of correct
 
 If an AI interpreted this TOF-SIMS data automatically without accounting for matrix effects or sputter-rate differences caused by surface roughness, it could conclude that *"doping concentration is X times higher"* purely from the raw intensity ratio. That would be the wrong conclusion.
 
-### XPS — Figure 7
+**XPS — Figure 7**
 
 The paper states that because all measured core levels are referenced to the C 1s peak, absolute Fermi-level shifts between doped and undoped samples cannot be reliably assessed from the XPS data. The conclusions therefore have to remain limited to chemical-state information.
 
@@ -156,7 +156,7 @@ Since every XPS peak is calibrated against C 1s at **284.8 eV**, the data cannot
 
 Knowing exactly where the line falls between *what a measurement can tell you* and *what it can't* is something only someone who has run XPS repeatedly and felt the limits of its referencing scheme can draw precisely.
 
-### Film Thickness: The Baseline for Every Calculation
+**Film Thickness: The Baseline for Every Calculation**
 
 Both conductivity and doping-efficiency calculations depend entirely on film thickness, **270 nm**, via:
 
@@ -189,14 +189,14 @@ But this is often exactly the answer to:
 
 Having walked through this paper with AI from start to finish, the boundary came through pretty clearly.
 
-### What AI Is Good At
+**What AI Is Good At**
 
 * Building first-order hypotheses from things like energy-level alignment
 * Accurately parsing protocol text into a reproducible form
 * Correctly applying equations such as doping efficiency and resistivity
 * Synthesizing multiple papers to generate candidate molecules or experimental conditions
 
-### What Still Needs an Experimenter's Intuition
+**What Still Needs an Experimenter's Intuition**
 
 * Reinterpreting a failed hypothesis through second-order variables, such as actual surface behavior: solubility, aggregation, and adsorption
 * Knowing the *why* hidden behind protocol numbers such as concentration, temperature, and time, especially time-sensitive windows like precursor aging or dopant aggregation kinetics
