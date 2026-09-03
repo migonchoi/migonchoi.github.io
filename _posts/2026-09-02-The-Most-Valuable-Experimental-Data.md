@@ -59,7 +59,7 @@ If you ask an AI, *"Why did this hypothesis fail?"*, it can accurately reconstru
 
 Ask, *"So what molecule should we screen for next to avoid this trap?"*, and the AI can pull a list of candidates with suitable LUMO values from the literature. But it can't predict whether that molecule will actually aggregate or spread evenly on a film surface. That's a property you only learn by making the solution and spin-coating it yourself, which is exactly what shows up later in the paper as the solubility gap between F4TCNQ (~0.5 mg/mL) and the Mo compound (~30 mg/mL).
 
-> **AI quickly builds first-order theory, such as energy-level alignment. But reinterpreting a failed theory through a second-order variable — actual behavior at the film surface — is squarely in the domain of chemical intuition.**
+> **AI can quickly build first-order hypotheses from concepts like energy-level alignment. Experimental intuition becomes especially valuable when those hypotheses are shaped by second-order effects such as how a molecule actually behaves at the film surface.**
 
 ---
 
@@ -71,9 +71,7 @@ Reading the Experimental Section, the numbers are precise, but *why this number?
 
 The paper states that it demonstrates p-type doping via a sequential approach, depositing the perovskite film first and the dopant afterward, specifically to keep the doping step from disturbing perovskite film quality.
 
-Compared with simultaneous deposition — as in Euvrard et al.'s F4TCNQ work, where perovskite and dopant are deposited together — this choice comes from hands-on experience. The solvent in a dopant solution applied mid-spin-coat could redissolve already-formed crystals or disrupt the morphology.
-
-The tradeoff is that the dopant then stays confined near the surface rather than penetrating deeply, as confirmed later by the 3D TOF-SIMS results in Figure 6.
+Compared with simultaneous deposition — as in Euvrard et al.'s F4TCNQ work, where perovskite and dopant are deposited together — this choice comes from hands-on experience. The solvent in a dopant solution applied mid-spin-coat could redissolve already-formed crystals or disrupt the morphology. The tradeoff is that the dopant then stays confined near the surface rather than penetrating deeply, as confirmed later by the 3D TOF-SIMS results in Figure 6.
 
 And this tradeoff isn't something an AI would spontaneously think to raise at the experimental-design stage.
 
@@ -86,7 +84,7 @@ When an AI auto-generates a protocol or ports it to a robotic platform, this kin
 
 **Deliberately Omitting the Antisolvent Step**
 
-In standard halide-perovskite film fabrication, antisolvent quenching — dripping a nonpolar solvent during spin-coating to trigger rapid crystallization — is close to standard practice. Yet this paper explicitly notes that the films were prepared **"without using an antisolvent."** The manuscript does not explicitly state the reason, but this can be attributed to the oxidation sensitivity of Sn and the phase-separation issues observed in mixed Sn-Pb perovskites.
+In halide-perovskite film fabrication, antisolvent quenching — dripping a nonpolar solvent during spin-coating to trigger rapid crystallization — is close to standard practice. Yet this paper explicitly notes that the films were prepared **"without using an antisolvent."** The manuscript does not explicitly state the reason, but this can be attributed to the oxidation sensitivity of Sn and the phase-separation issues observed in mixed Sn-Pb perovskites.
 
 It is an exception to the general protocol that only someone who has directly worked with this materials system can judge.
 
@@ -114,7 +112,7 @@ SnI2 is highly susceptible to Sn2+ → Sn4+ oxidation. Actual O2/H2O levels vary
 
 **The Data-Filtering Criterion the Paper Discloses About Itself**
 
-At the very end of the Experimental Section, the authors state that they ultimately analyzed only the runs in which the undoped control samples showed consistently low carrier density, in the range of roughly **10¹⁴ to 10¹⁵ cm⁻³**. This allowed them to rule out the possibility that the shift in carrier density arose incidentally from the sample's exposure to oxygen.
+At the very end of the Experimental Section, we state that we ultimately analyzed only the runs in which the undoped control samples showed consistently low carrier density, in the range of roughly **10¹⁴ to 10¹⁵ cm⁻³**. This allowed us to rule out the possibility that the shift in carrier density arose incidentally from the sample's exposure to oxygen.
 
 In effect, this means that on days when glovebox conditions were poor and even the undoped sample's carrier density spiked, that run was excluded from analysis. Where exactly to draw that threshold isn't in any standard manual. It's a feel built up only through many repeated measurements, learning what range counts as "normal" versus "an off batch."
 
