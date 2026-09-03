@@ -15,7 +15,7 @@ categories:
 
 ----------------------------------------------------------
 
-As AI becomes more capable and robotic experimentation platforms become more common, I keep returning to a different question: how can experimental scientists make the most of these tools? If AI can help design experiments, execute protocols, and analyze results, how can the intuition built over years at the bench be brought into that workflow to make experimentation better?
+As AI becomes more capable and robotic experimentation platforms become more common, I keep returning to a question: how can experimental scientists make the most of these tools? If AI can help design experiments, execute protocols, and analyze results, how can the intuition built over years at the bench be brought into that workflow to make experimentation better?
 
 So I took one of my own papers, [Choi et al. in *ACS Applied Materials & Interfaces*](https://doi.org/10.1021/acsami.5c19800), on p-type electron-transfer doping in mixed Sn-Pb perovskites, and dissected it from start to finish.
 
