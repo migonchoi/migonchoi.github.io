@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "post-the-most-valuable-experimental-data-may-be-the-data-you-never-record",
+        },{id: "post-ai-ready-r-amp-d-starts-before-the-ai-structuring-the-knowledge-your-engineers-already-have",
+        
+          title: "AI-Ready R&amp;D Starts Before the AI: Structuring the Knowledge Your Engineers Already Have...",
+        
+        description: "AI-Ready R&amp;D Starts Before the AI: Structuring the Knowledge Your Engineers Already Have",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/AI-ready-data/";
+          
+        },
+      },{id: "post-the-most-valuable-experimental-data-may-be-the-data-you-never-record",
         
           title: "The Most Valuable Experimental Data May Be the Data You Never Record",
         
