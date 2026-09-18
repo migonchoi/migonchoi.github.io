@@ -57,7 +57,7 @@ But one important layer is still missing between Prediction and Execution. Just 
 
 A control sample may be abnormal, the oxygen concentration in the glovebox may be elevated, or a precursor may be too old. Equipment may be unstable, or repeated measurements under the same condition may need to come first.
 
-A Decision Engine integrates this information and determines the next action.
+A Decision Engine integrates this information and determines the next action (Figure 1).
 
 **RUN / REPEAT / EXPLORE / DEFER / CHARACTERIZE / STOP**
 
