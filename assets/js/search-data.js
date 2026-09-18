@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "post-ai-ready-r-amp-d-starts-before-the-ai-structuring-the-knowledge-your-engineers-already-have",
+        },{id: "post-decision-engine-for-materials-r-amp-d-beyond-prediction-and-automation-toward-the-age-of-decision-making",
+        
+          title: "Decision Engine for Materials R&amp;D: Beyond Prediction and Automation, Toward the Age of...",
+        
+        description: "Why AI for Science depends on closing the loop between experiments, data representation, models, and decisions.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/decision-engine-for-materials/";
+          
+        },
+      },{id: "post-ai-ready-r-amp-d-starts-before-the-ai-structuring-the-knowledge-your-engineers-already-have",
         
           title: "AI-Ready R&amp;D Starts Before the AI: Structuring the Knowledge Your Engineers Already Have...",
         
