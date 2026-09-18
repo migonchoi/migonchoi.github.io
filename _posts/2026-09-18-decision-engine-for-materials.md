@@ -386,3 +386,5 @@ Over time, this decision history may become one of the most important datasets f
 **Choosing the right experiment at the right time.**
 
 That is the problem the Experimental R&D Decision Engine is designed to address.
+
+*The simulations presented here are intended as a proof-of-concept prototype to illustrate the potential value of a Decision Engine in experimental R&D.*
