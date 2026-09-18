@@ -183,9 +183,9 @@ Around the same time in the actual research process, I also moved away from expa
 
 I recalculated the average carrier density values using the data selected by the Decision Engine according to its QC rules. The resulting values were:
 
-* Undoped: \(3.76 \times 10^{14}\,\mathrm{cm}^{-3}\)
-* Mo dopant: \(3.89 \times 10^{15}\,\mathrm{cm}^{-3}\)
-* F₄TCNQ: \(7.51 \times 10^{17}\,\mathrm{cm}^{-3}\)
+* Undoped: $3.76 \times 10^{14}\,\mathrm{cm}^{-3}$
+* Mo dopant: $3.89 \times 10^{15}\,\mathrm{cm}^{-3}$
+* F₄TCNQ: $7.51 \times 10^{17}\,\mathrm{cm}^{-3}$
 
 Compared with the average values reported in the Supporting Information of the published paper, the differences were approximately **+4.5%, 0%, and -6%**.
 
