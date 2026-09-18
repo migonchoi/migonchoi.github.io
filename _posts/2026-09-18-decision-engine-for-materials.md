@@ -73,7 +73,13 @@ An autonomous-driving analogy helps illustrate this idea.
 
 Even with a good map and a fast vehicle, fully autonomous driving is difficult without a control system that can respond to real-time conditions. The same is true in the laboratory.
 
-![Decision Engine architecture for materials R&D](/assets/img/blog/decision-engine-overview.png)
+<div style="text-align: center;">
+  <img src="/assets/img/decision-engine/decision-engine-overview.png" alt="Decision Engine architecture for materials R&D" width="70%">
+</div>
+
+<p style="text-align: center; font-size: 0.95rem;">
+  <em>Figure 1. Conceptual architecture of an Experimental R&D Decision Engine.</em>
+</p>
 
 ---
 
