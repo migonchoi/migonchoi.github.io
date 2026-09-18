@@ -11,8 +11,6 @@ categories:
   - AI for Materials
 ---
 
-# Decision Engine for Materials R&D: Beyond Prediction and Automation, Toward the ‘Age of Decision-Making’
-
 ## Introduction: We Need Better Decisions, Not Just More Experiments
 
 AI for Materials R&D is advancing rapidly. Simulation and AI are proposing vast numbers of candidate materials, while robotics and Self-Driving Labs are beginning to automate experiments themselves. But generating more candidates and running experiments faster does not automatically make the overall R&D process more efficient.
@@ -113,7 +111,7 @@ For example, it can automatically flag runs that fail Control QC or separately c
 
 ---
 
-# 3. Testing the Decision Engine on a Real Perovskite Research Project
+## 3. Testing the Decision Engine on a Real Perovskite Research Project
 
 To examine whether this idea could be meaningful in a real experimental workflow, I reanalyzed a previously published perovskite doping research project. The dataset consisted of experiments conducted over several months.
 
@@ -195,7 +193,7 @@ In other words, even simple QC and decision rules were able to produce results q
 
 ---
 
-# 8. Track B: Simulator — What If Environmental Sensors Had Been Available?
+## 8. Track B: Simulator — What If Environmental Sensors Had Been Available?
 
 Replay has a clear limitation. During the original experiments, changes in glovebox O₂ and H₂O were not stored as structured data at every time point. Rather than retroactively inventing missing historical values and feeding them into Replay, I created a separate Simulator Track.
 
@@ -213,7 +211,7 @@ The first simulator was very simple. If the glovebox H₂O concentration exceede
 
 ---
 
-# 10. Simulator v1: The Important Question Is Not ‘How Many Sensors?’ but ‘Are You Looking at the Right Variable?’
+## 10. Simulator v1: The Important Question Is Not ‘How Many Sensors?’ but ‘Are You Looking at the Right Variable?’
 
 A more important result emerged here. Using H₂O alone as an absolute criterion created a problem. If the experiment was stopped whenever H₂O exceeded 0.3 ppm, the engine sometimes DEFERRED experiments even on days when the experiment could actually have proceeded. In the Simulation, these false positives created an average of **2.8 days of unnecessary delay** per project.
 
@@ -223,7 +221,7 @@ This result shows that the key to a Decision Engine is not simply connecting mor
 
 ---
 
-# 11. What Did We Learn?
+## 11. What Did We Learn?
 
 Four findings stood out from the Replay and Simulation.
 
@@ -249,7 +247,7 @@ It is to **balance failure cost, delay cost, and information value**.
 
 ---
 
-# 12. Beyond Automation: Controlling Uncertainty
+## 12. Beyond Automation: Controlling Uncertainty
 
 Many discussions around Autonomous Labs emphasize how quickly robots can run experiments. But automation does not necessarily mean better decision-making. If an automated system fabricates hundreds of samples while the environment is invalid, it may waste resources far faster than a human researcher.
 
@@ -269,7 +267,7 @@ This is the domain I refer to as the Decision Layer.
 
 ---
 
-# 13. A Decision Engine Can Incorporate Much More Context
+## 13. A Decision Engine Can Incorporate Much More Context
 
 Real experimental decisions are influenced by far more variables than O₂ and H₂O.
 
@@ -321,7 +319,7 @@ The system could then expand into a decision problem that jointly considers **co
 
 ---
 
-# 14. Why Replay and Simulation Must Be Kept Separate
+## 14. Why Replay and Simulation Must Be Kept Separate
 
 One part of this project that I considered especially important was separating data according to their origin. If sensor values that did not exist in the historical record are estimated retroactively and then used to claim that “the system could have made this decision at the time,” the result can easily become distorted. That is why I kept the two Tracks clearly separated.
 
@@ -345,7 +343,7 @@ As Decision Engines become more sophisticated, data provenance and assumption tr
 
 ---
 
-# 15. A Decision Engine Is Not Only for Self-Driving Labs
+## 15. A Decision Engine Is Not Only for Self-Driving Labs
 
 When people first think about this idea, it is easy to imagine a large robotics facility or a fully autonomous laboratory. But it can begin in a much smaller form.
 
@@ -363,7 +361,7 @@ As laboratory automation increases, this software layer could evolve from a huma
 
 ---
 
-# Conclusion: Better Decisions, Not Just Faster Experiments
+## Conclusion: Better Decisions, Not Just Faster Experiments
 
 The future of Materials R&D may not depend only on generating more candidates or running experiments faster. Prediction tells us **what may be possible**, Automation **executes the experiment**, and the Decision Engine sits between them and decides **“What should we do given the current state?”**
 
