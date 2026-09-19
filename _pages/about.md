@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: AI × Materials Science × Autonomous Experimentation
+subtitle: AI × Materials Science
 
 profile:
   align: left
@@ -25,13 +25,6 @@ profile:
 I am a materials scientist working at the intersection of experimental science, machine learning, and data-driven decision-making.
 
 My research focuses on making machine learning useful for real experimental systems — particularly when data are small, noisy, heterogeneous, and expensive to acquire.
-
-**Selected interests**
-
-- Scientific machine learning
-- Uncertainty quantification
-- Autonomous experimentation
-- Materials data systems
 
 I am particularly interested in developing systems that move beyond prediction toward uncertainty-aware decision-making and closed-loop experimentation.
 
