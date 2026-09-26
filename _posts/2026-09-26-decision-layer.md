@@ -76,6 +76,7 @@ Two things stood out.
 This was a small retrospective test, not a validation of a general system. But it showed me that experimental judgment can be represented more explicitly than it usually is.
 
 
+
 The long-term question I am interested in is simple:
 
 **Can we build systems that do not just suggest experiments or execute them, but also know when the evidence is good enough to act?** 
