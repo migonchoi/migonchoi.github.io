@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "post-decision-engine-for-materials-r-amp-d-beyond-prediction-and-automation-toward-the-age-of-decision-making",
+        },{id: "post-the-decision-layer-what-should-we-actually-run-next",
+        
+          title: "The Decision Layer: What Should We Actually Run Next?",
+        
+        description: "Models propose experiments and robots run them. Something in between has to decide what actually happens next, and that is the part I am building.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/decision-layer/";
+          
+        },
+      },{id: "post-decision-engine-for-materials-r-amp-d-beyond-prediction-and-automation-toward-the-age-of-decision-making",
         
           title: "Decision Engine for Materials R&amp;D: Beyond Prediction and Automation, Toward the Age of...",
         
