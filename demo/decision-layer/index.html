@@ -205,7 +205,7 @@ details.tech[open] > summary::before{content:"▾ ";}
 .stat.bad b{color:var(--dim)} .stat.bad.on b{color:var(--defer)}
 .stat.good b{color:var(--run)}
 
-.lower{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:1rem;margin-top:.9rem}
+.lower{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:1rem;margin-top:1rem}
 @media (max-width:920px){ .grid{grid-template-columns:1fr} .lower{grid-template-columns:1fr} }
 
 svg.chart{width:100%;height:auto;display:block}
@@ -389,36 +389,37 @@ footer p{margin:.35rem 0;max-width:54rem}
 
     <p class="cost-note" id="costnote"></p>
 
-    <div class="lower hidden" id="sec-lower">
-      <div class="panel">
-        <h2><span data-t="chartHead"></span><span class="est-now mono" id="est-val">·</span></h2>
-        <svg class="chart" id="chart" viewBox="0 0 520 232" role="img" aria-labelledby="chart-desc"></svg>
-        <p class="chart-note" data-t="chartNote" id="chart-desc"></p>
-        <p class="chart-note samples" data-t="leadNote2"></p>
-      </div>
-      <div class="panel">
-        <h2 data-t="histHead"></h2>
-        <div class="strip" id="strip"></div>
-        <div class="legend">
-          <span><i style="background:var(--run)"></i>RUN</span>
-          <span><i style="background:var(--repeat)"></i>REPEAT</span>
-          <span><i style="background:var(--defer)"></i>DEFER</span>
-          <span><i style="background:var(--stop)"></i>STOP</span>
-        </div>
-        <p class="legend-note" data-t="legendNote"></p>
-        <div class="log mono" id="log"></div>
-      </div>
-    </div>
-
-    <div class="panel diag hidden" id="sec-diag">
-      <h2><span data-t="diagHead"></span><span class="mono" id="diag-runs"></span></h2>
-      <div class="diag-sum" id="diag-sum"></div>
-      <div id="diag-body"></div>
-    </div>
-
-    </div>
   </section>
 </div>
+
+  <div class="lower hidden" id="sec-lower">
+    <div class="panel">
+      <h2><span data-t="chartHead"></span><span class="est-now mono" id="est-val">·</span></h2>
+      <svg class="chart" id="chart" viewBox="0 0 520 232" role="img" aria-labelledby="chart-desc"></svg>
+      <p class="chart-note" data-t="chartNote" id="chart-desc"></p>
+      <p class="chart-note samples" data-t="leadNote2"></p>
+    </div>
+    <div class="panel">
+      <h2 data-t="histHead"></h2>
+    <div class="strip" id="strip"></div>
+    <div class="legend">
+        <span><i style="background:var(--run)"></i>RUN</span>
+        <span><i style="background:var(--repeat)"></i>REPEAT</span>
+        <span><i style="background:var(--defer)"></i>DEFER</span>
+        <span><i style="background:var(--stop)"></i>STOP</span>
+      </div>
+      <p class="legend-note" data-t="legendNote"></p>
+    <div class="log mono" id="log"></div>
+    </div>
+    </div>
+
+  <div class="panel diag hidden" id="sec-diag">
+    <h2><span data-t="diagHead"></span><span class="mono" id="diag-runs"></span></h2>
+    <div class="diag-sum" id="diag-sum"></div>
+    <div id="diag-body"></div>
+    </div>
+
+    </div>
 
 <h2 class="sec-head" data-t="faqHead"></h2>
 <div class="faq">
