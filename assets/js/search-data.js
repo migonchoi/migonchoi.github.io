@@ -30,9 +30,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "post-the-decision-layer-what-should-we-actually-run-next",
+        },{id: "post-the-decision-layer-demo",
         
-          title: "The Decision Layer: What Should We Actually Run Next?",
+          title: "The Decision Layer Demo",
         
         description: "Models propose experiments and robots run them. Something in between has to decide what actually happens next, and that is the part I am building.",
         section: "Posts",
