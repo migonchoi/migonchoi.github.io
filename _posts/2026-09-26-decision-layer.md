@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Decision Layer: What Should We Actually Run Next?"
+title: "The Decision Layer Demo"
 date: 2026-09-26
 description: "Models propose experiments and robots run them. Something in between has to decide what actually happens next, and that is the part I am building."
 tags:
