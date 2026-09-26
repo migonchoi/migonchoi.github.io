@@ -21,48 +21,61 @@ categories:
 
 ## The gap I keep coming back to
 
-Most of the attention in AI for science has gone to two ends of the loop. On one end, models that generate and prioritize candidates: foundation models, simulation, LLMs. On the other, platforms that physically run experiments: robotics and automation.
+A lot of attention in AI for science has gone to two ends of the experimental loop.
 
-In between sits the layer that decides what actually happens next.
+On one end, models propose and prioritize experiments through simulation, machine learning, foundation models, and LLMs. On the other, robotics and automation physically run those experiments. But something still has to decide what actually happens next.
 
 - With limited time, budget, and instrument capacity, which experiment should run next?
-- How much should we trust the model's suggestion, and the data coming back from the lab?
-- When is the right move to repeat, wait, characterize further, or stop?
+- How much should we trust the model's suggestion and the data coming back from the lab?
+- When should we repeat, wait, characterize further, or stop?
 
-This is the layer I want to build: AI systems that make useful decisions under the noise, drift, and constraints of real experimental environments. Knowing when an output is actually actionable takes both wet-lab intuition and depth in AI/ML.
+This is the layer I want to build: AI systems that make useful experimental decisions under the noise, drift, and constraints of real labs.
+
+Knowing whether a result is actually actionable requires more than a model prediction. It requires an understanding of both the experiment and the uncertainty around it.
 
 ## Why the second question matters more than it looks
 
-Bayesian optimization and active learning assume the data coming back is trustworthy. In a real lab that assumption breaks regularly through contamination, drift, aged reagent, or a bad contact, and nothing in the acquisition function notices.
+Optimization and active learning methods can tell us what experiment would be most useful to run next. But in practice, that only helps if the data coming back from the lab is usable. Real experiments fail in ordinary ways. A sample may be contaminated. An instrument may drift. A reagent may age. A device contact may be bad.
 
-Researchers handle this every day. You look at today's control, decide the batch is off, and redo it. That judgment rarely gets written down, and it differs from person to person. The demo makes that call explicit, every run, with the reasoning attached.
+Researchers deal with this constantly. You look at today's control samples, realize that something is off, and decide not to trust the batch. That decision is important, but it is rarely recorded in a structured way. It often stays in someone's head, and the criteria can vary from person to person.
+
+The demo makes that decision explicit. For every run, the engine decides whether the result should be trusted and explains why.
 
 ## What the demo does
 
-Each press is one day in a lab. Six films get made: three controls, three treated samples. The glovebox drifts on its own, the way it does in reality, and you only find out what kind of day it was after the engine has judged it.
+Each press represents one day in a lab.
 
-The engine returns one call per run:
+Six films are made: three controls and three treated samples. The simulated glovebox conditions drift over time, as experimental environments often do. You do not know what kind of day it was until the measurements come back.
+
+The engine then makes one decision:
 
 - **Run.** Controls are normal, so this result counts.
 - **Repeat.** Usable, but not enough yet to conclude.
 - **Defer.** Today's data cannot be trusted, and here is what to check.
 - **Characterize and stop.** The question has been answered.
 
-It also reads across runs. Three flagged days in a row is not three bad days; it is a glovebox that needs a pressure-decay test.
+The engine also looks across runs. Three flagged days in a row may not be three unrelated bad days. They may point to a systematic problem, such as a glovebox that needs a pressure decay test.
+
+That distinction matters because experimental decisions are rarely made from one measurement in isolation.
 
 ## Where the rules came from
 
-The numbers in the demo are synthetic. The rules are not.
+The numbers in the demo are synthetic. The decision logic is not. I first tested these rules by replaying the experimental history of a study I published on molecular doping of tin lead perovskites ([paper](https://doi.org/10.1021/acsami.5c19800)).
 
-They were first replayed, run by run, over the experimental log of a study I published on molecular doping of tin-lead perovskites ([paper](https://doi.org/10.1021/acsami.5c19800)). In the paper, as in most experimental work, we analyzed only runs whose control samples behaved consistently. That judgment is essential, and it is usually made after the fact. The replay made it at every run instead.
+As in most experimental work, we only analyzed runs in which the control samples behaved consistently. That quality judgment was essential to interpreting the results, but it was made as part of the research process rather than represented explicitly in an algorithm.
 
-Two things came out of that exercise. The runs the engine judged trustworthy reproduced the published average for one of the dopants. And it called stop on the same run we did.
+The replay asked a different question: what if those decisions had been made systematically after every run?
 
-## What I am looking for
 
-I would like to talk with:
+Two things stood out.
 
-- teams running automated or semi-automated experimental platforms who want a decision layer on top of their models and hardware
-- materials and chemistry groups with past experiment logs, messy runs included, who would like to see what a replay reveals
-- researchers and investors who see decision-making under real lab constraints as core to autonomous experimentation
+- First, the runs that the engine judged trustworthy reproduced the published average for one of the dopants.
 
+- Second, the engine recommended stopping at the same point we did.
+
+This was a small retrospective test, not a validation of a general system. But it showed me that experimental judgment can be represented more explicitly than it usually is.
+
+
+The long-term question I am interested in is simple:
+
+**Can we build systems that do not just suggest experiments or execute them, but also know when the evidence is good enough to act?** 
