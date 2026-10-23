@@ -30,7 +30,7 @@ For the first prototype, I focused on **perovskite solar cells**, a field I have
 Users can paste text or upload a PDF to receive four types of analysis:
 
 - **Key Claim Summary:** Summarizes the paper's main findings and reported achievements.
-- **12-Point Checklist:** Evaluates key metrics such as efficiency, device area, stability, and reproducibility, labeling each as `Found`, `Gap`, `Unclear`, or `Check SI`.
+- **12-Point Checklist:** Evaluates key metrics such as efficiency, device area, stability, and reproducibility, labeling each as `Found`, `Gap`, or `Unclear`.
 - **Expert Briefing:** Explains how the reported results compare with existing technologies and what they mean in practice.
 - **Three Critical Questions:** Generates three important follow-up questions, along with explanations of why they matter.
 
