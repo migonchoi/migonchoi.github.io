@@ -34,7 +34,7 @@ ninja.data = [{
         
           title: "Gap Finder: A Tool That Finds What Scientific Papers Leave Out",
         
-        description: "Building Gap Finder, an AI tool that identifies missing evidence and helps readers ask better questions about scientific claims.",
+        description: "Building Gap Finder, a tool that identifies missing evidence and helps readers ask better questions about scientific claims.",
         section: "Posts",
         handler: () => {
           
