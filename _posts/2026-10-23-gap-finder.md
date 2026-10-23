@@ -7,6 +7,8 @@ tags: Materials-Science, Perovskite-Solar-Cells, AI
 description: "Building Gap Finder, a tool that identifies missing evidence and helps readers ask better questions about scientific claims."
 ---
 
+> **Can AI go beyond summarizing scientific papers to critically examine research claims and help us ask better questions?**
+> 
 **[Try Demo]({{ "/demo/gap-finder/" | relative_url }})**
 
 ## 1. Reading a Paper Is Not the Same as Evaluating a Technology
@@ -46,8 +48,3 @@ My next steps are to test the tool on real scientific papers, compare its output
 
 While the current version focuses on perovskite solar cells, I would eventually like to explore applications in other materials science fields, including batteries and semiconductors.
 
----
-
-> **Can AI go beyond summarizing scientific papers to critically examine research claims and help us ask better questions?**
-
-Gap Finder is my first attempt to explore that question.
