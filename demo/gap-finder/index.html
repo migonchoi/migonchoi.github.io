@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Gap Finder</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one column datasheet — input slip on top, the three questions as the hero result, then the 12-line spec checklist with blanks drawn as empty form fields. */
+:root {
+  --paper: #F4F6F9;
+  --surface: #FFFFFF;
+  --ink: #14171D;
+  --muted: #586071;
+  --line: #DADFE7;
+  --accent: #2E3DAE;
+  --accent-ink: #FFFFFF;
+  --gap-bg: #FFF1CF;
+  --gap-ink: #7A4A00;
+  --gap-line: #D9A43A;
+  --found: #17734F;
+  --found-bg: #E3F3EB;
+  --unclear-bg: #ECEEF2;
+  --si-bg: #E6E9FB;
+  --danger: #B42318;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E1014; --surface: #171A21; --ink: #E7EAF0; --muted: #9AA2B2; --line: #2A303C;
+    --accent: #8C98FF; --accent-ink: #0E1014; --gap-bg: #3D2C0C; --gap-ink: #F6C766; --gap-line: #9C7426;
+    --found: #63CFA2; --found-bg: #133227; --unclear-bg: #232833; --si-bg: #1D2347; --danger: #FF8A7A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E1014; --surface: #171A21; --ink: #E7EAF0; --muted: #9AA2B2; --line: #2A303C;
+  --accent: #8C98FF; --accent-ink: #0E1014; --gap-bg: #3D2C0C; --gap-ink: #F6C766; --gap-line: #9C7426;
+  --found: #63CFA2; --found-bg: #133227; --unclear-bg: #232833; --si-bg: #1D2347; --danger: #FF8A7A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 880px; margin: 0 auto; padding-block: 40px 64px; display: flex; flex-direction: column; gap: 28px; }
+header { display: flex; flex-direction: column; gap: 8px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--muted); }
+h1 { margin: 0; font-size: 34px; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
+.lede { margin: 0; color: var(--muted); max-width: 62ch; }
+.slip { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.slip-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.slip-head label { font-weight: 600; }
+.count { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+textarea {
+  width: 100%; min-height: 168px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  font: 14px/1.6 var(--font-body); color: var(--ink); background: var(--paper);
+}
+textarea:focus-visible, button:focus-visible, .file:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+button, .file {
+  min-height: 44px; padding: 0 18px; border-radius: 10px; font: 600 14px var(--font-body); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+}
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+button:disabled { opacity: 0.55; cursor: default; }
+.file input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.file { position: relative; }
+.status { font-size: 13px; color: var(--muted); }
+.usage { margin: 0; font-size: 12px; color: var(--muted); display: flex; gap: 6px; align-items: baseline; }
+.usage::before { content: "ⓘ"; color: var(--accent); }
+.keyrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.keyrow label { font-size: 13px; font-weight: 600; }
+.keyrow input { flex: 1 1 260px; min-width: 0; min-height: 40px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; font: 13px var(--font-mono); color: var(--ink); background: var(--paper); }
+.keyrow input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.status.err { color: var(--danger); }
+.result { display: flex; flex-direction: column; gap: 20px; }
+.result-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+.tag { font-family: var(--font-mono); font-size: 12px; padding: 3px 10px; border-radius: 999px; background: var(--unclear-bg); color: var(--muted); }
+.claim { margin: 0; font-size: 17px; font-weight: 600; max-width: 62ch; text-wrap: balance; }
+.paper-title { margin: 0; font-size: 13px; color: var(--muted); }
+.questions { background: var(--surface); border: 2px solid var(--ink); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 16px; }
+.questions h2 { margin: 0; font-size: 20px; }
+.questions ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; counter-reset: q; }
+.questions li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; counter-increment: q; }
+.questions li::before {
+  content: counter(q); width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: var(--accent-ink);
+  display: grid; place-items: center; font: 600 15px var(--font-mono);
+}
+.q { font-size: 16px; font-weight: 600; }
+.why { font-size: 13px; color: var(--muted); }
+.meter-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.meter { flex: 1 1 240px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; }
+.meter span { height: 10px; border-radius: 2px; background: var(--found); }
+.meter span.missing { background: var(--gap-bg); outline: 1px dashed var(--gap-line); outline-offset: -1px; }
+.meter span.unclear { background: var(--line); }
+.meter-label { font-size: 14px; font-weight: 600; }
+.meter-label b { font-family: var(--font-mono); font-weight: 500; }
+.sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.sheet h2 { margin: 0; padding: 16px 20px; font-size: 16px; border-bottom: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: minmax(120px, 190px) minmax(0, 1fr) auto; gap: 14px; align-items: start; padding: 12px 20px; border-bottom: 1px solid var(--line); }
+.row:last-child { border-bottom: 0; }
+.row .label { font-weight: 600; font-size: 14px; }
+.row .value { font-size: 14px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.row .evidence { display: block; font-family: var(--font-body); font-size: 12px; color: var(--muted); margin-top: 2px; }
+.blank { display: inline-block; min-width: 140px; border-bottom: 2px dashed var(--gap-line); color: var(--gap-ink); font-family: var(--font-body); font-size: 12px; padding-bottom: 1px; }
+.chip { font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.chip.found { background: var(--found-bg); color: var(--found); }
+.chip.missing { background: var(--gap-bg); color: var(--gap-ink); }
+.chip.unclear { background: var(--unclear-bg); color: var(--muted); }
+.chip.in_si { background: var(--si-bg); color: var(--accent); }
+.meter span.in_si { background: var(--si-bg); outline: 1px solid var(--accent); outline-offset: -1px; }
+.si-note { display: inline-block; color: var(--accent); font-family: var(--font-body); font-size: 12px; }
+.advisor { border-left: 0; background: var(--paper); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.advisor .k { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.02em; }
+.advisor p { margin: 0; font-size: 15px; }
+.focus { display: inline-block; font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
+.flags { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 8px; margin-top: 6px; font-size: 13px; }
+.flags .ok { color: var(--found); font-weight: 600; }
+.flags .bad { color: var(--gap-ink); font-weight: 600; }
+.note { font-size: 12px; color: var(--muted); margin: 0; }
+@media (max-width: 560px) {
+  h1 { font-size: 28px; }
+  .row { grid-template-columns: minmax(0, 1fr) auto; }
+  .row .value { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .result.fresh { animation: rise 0.35s ease-out; }
+  @keyframes rise { from { transform: translateY(6px); opacity: 0.6; } to { transform: none; opacity: 1; } }
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SCIENCE RADAR · PEROVSKITE SOLAR CELLS</div>
+    <h1>Gap Finder</h1>
+    <p class="lede">Paste a paper's abstract or upload the PDF. Gap Finder spots the information you need to judge the headline claim but the paper leaves out, and turns it into three questions to ask.</p>
+  </header>
+
+  <section class="slip" aria-labelledby="paper-label">
+    <div class="slip-head">
+      <label id="paper-label" for="paper">Paper text</label>
+      <span class="count" id="count">0 characters</span>
+    </div>
+    <textarea id="paper" placeholder="Paste the abstract or full text. You can also upload PDFs below."></textarea>
+    <div class="actions">
+      <button class="primary" id="run" type="button">Find gaps</button>
+      <label class="file" for="pdf">Upload PDFs (main text + SI)<input id="pdf" type="file" accept="application/pdf,.pdf" multiple></label>
+      <button id="stop" type="button" hidden>Stop</button>
+      <span class="status" id="status" role="status" aria-live="polite"></span>
+    </div>
+    <div class="keyrow" id="keyrow" hidden>
+      <label for="apikey">Anthropic API key</label>
+      <input id="apikey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-...">
+    </div>
+    <p class="usage" id="usage"></p>
+  </section>
+
+  <section class="result" id="result" aria-live="polite">
+    <div class="result-head">
+      <div>
+        <p class="paper-title" id="paperTitle"></p>
+        <p class="claim" id="claim"></p>
+      </div>
+      <span class="tag" id="sourceTag"></span>
+    </div>
+
+    <div class="questions">
+      <div class="advisor" id="advisorBox"><span class="k">Expert briefing</span><p id="advisor"></p></div>
+      <h2>Three questions to ask the founders</h2>
+      <ol id="qs"></ol>
+      <div class="actions"><button id="copy" type="button">Copy questions</button><span class="status" id="copyStatus"></span></div>
+    </div>
+
+    <div class="meter-row">
+      <div class="meter" id="meter" aria-hidden="true"></div>
+      <div class="meter-label" id="meterLabel"></div>
+    </div>
+
+    <div class="sheet">
+      <h2>Spec sheet check (12 items)</h2>
+      <div id="rows"></div>
+    </div>
+    <p class="note">This is an AI reading of the paper text only. Check it against the original. It helps you prepare questions; it is not investment advice.</p>
+  </section>
+</div>
+
+<script>
+const FIELDS = [
+  { key: "pce", label: "Efficiency and scan direction", rule: "found if a power conversion efficiency number is given; mention scan direction if stated" },
+  { key: "area", label: "Measured area", rule: "found only if an active/aperture/mask area number is given" },
+  { key: "certified", label: "Certification", rule: "found if certification by an independent lab is stated (name the lab); missing if not mentioned" },
+  { key: "stabilized", label: "Stabilised output (MPPT)", rule: "found if steady-state, MPPT or stabilized power output is reported; reduced hysteresis alone is not enough" },
+  { key: "stats", label: "Device count and statistics", rule: "found if the number of devices, average ± deviation, or a distribution is reported" },
+  { key: "stability_conditions", label: "Stability test conditions", rule: "found if light, temperature and atmosphere/humidity (and ideally bias and ISOS protocol) are all given; unclear if only some are" },
+  { key: "stability_result", label: "Test duration and retention", rule: "found if test duration and retained efficiency are both given" },
+  { key: "encapsulation", label: "Encapsulation", rule: "found if encapsulated or unencapsulated is stated" },
+  { key: "architecture", label: "Device architecture", rule: "found if n-i-p / p-i-n or the layer stack is given" },
+  { key: "composition", label: "Perovskite composition", rule: "found if the perovskite composition or dimensionality is given; unclear if only described loosely (e.g. FA-rich)" },
+  { key: "deposition", label: "Process (deposition method)", rule: "found if the film deposition method is given" },
+  { key: "control", label: "Control comparison", rule: "found if an explicit control/reference device is compared under the same test" }
+];
+
+const EXAMPLE_TEXT = "Here we report a multifunctional ammonium additive that passivates grain boundaries in formamidinium-rich perovskite films. The resulting inverted (p-i-n) solar cells achieve a power conversion efficiency of 25.8%, among the highest reported for this architecture. Unencapsulated devices retain 95% of their initial efficiency after 1,000 h of storage in ambient air, and 90% after 500 h under continuous illumination. The additive also suppresses ion migration, as evidenced by reduced hysteresis. Our results provide a simple route toward efficient and stable perovskite photovoltaics.";
+
+const EXAMPLE_RESULT = {
+  title: "",
+  advisor_note: "25.8% is high for a p-i-n single-junction cell but still short of the best certified record (about 28%), and with no area or certification it cannot yet be compared like for like. The stability evidence is only room-temperature storage and a light test under unstated conditions, so treat operational stability as early-stage.",
+  claim: "An ammonium additive passivates grain boundaries, giving 25.8% efficiency and high stability in p-i-n cells.",
+  fields: {
+    pce: { status: "found", value: "25.8% (scan direction not stated)", evidence: "achieve a power conversion efficiency of 25.8%" },
+    area: { status: "missing", value: "", evidence: "" },
+    certified: { status: "missing", value: "", evidence: "" },
+    stabilized: { status: "missing", value: "", evidence: "only reduced hysteresis is mentioned" },
+    stats: { status: "missing", value: "", evidence: "" },
+    stability_conditions: { status: "unclear", value: "Storage in air / continuous light. Temperature, humidity and bias not stated", evidence: "storage in ambient air ... under continuous illumination" },
+    stability_result: { status: "found", value: "95% after 1,000 h (storage), 90% after 500 h (light)", evidence: "retain 95% ... after 1,000 h ... 90% after 500 h" },
+    encapsulation: { status: "found", value: "Unencapsulated", evidence: "Unencapsulated devices" },
+    architecture: { status: "found", value: "p-i-n (inverted)", evidence: "inverted (p-i-n) solar cells" },
+    composition: { status: "unclear", value: "FA-rich (exact composition not stated)", evidence: "formamidinium-rich perovskite films" },
+    deposition: { status: "missing", value: "", evidence: "" },
+    control: { status: "unclear", value: "No numbers for a device without the additive", evidence: "" }
+  },
+  questions: [
+    { focus: "Efficiency", q: "What was the device area for the 25.8% result, and was it certified by an independent lab?", why: "Without area and certification the claim cannot be compared with competing technologies on equal terms.", good: "A value on a cell of 1 cm² or larger, or an independently certified value", red: "A single champion cell under 0.1 cm², not certified" },
+    { focus: "Stability", q: "At what temperature was the 500 h light test run, and were the cells held at maximum power point?", why: "'90% retained' means very different things at room temperature on open circuit and at 85 °C at maximum power point.", good: "65–85 °C, maximum power point, 1,000 h or more (done or planned)", red: "Room temperature, open circuit, 500 h at most" },
+    { focus: "Weak spot of this paper", q: "The only evidence that the additive suppresses ion migration is reduced hysteresis. Do you have a direct measurement?", why: "If the mechanism is weak, the effect may not reproduce under other conditions or on larger areas.", good: "Direct ion-migration measurements or long-term bias tests", red: "No evidence beyond hysteresis" }
+  ]
+};
+
+const $ = (id) => document.getElementById(id);
+const paper = $("paper"), runBtn = $("run"), stopBtn = $("stop"), statusEl = $("status");
+let sample = null, ctl = null, pdfReady = null;
+
+function setStatus(text, isErr) { statusEl.textContent = text; statusEl.classList.toggle("err", !!isErr); }
+function updateCount() { $("count").textContent = paper.value.length.toLocaleString("en-US") + " characters"; }
+
+function render(res, sourceLabel) {
+  $("paperTitle").textContent = res.title || "";
+  $("paperTitle").hidden = !res.title;
+  $("claim").textContent = res.claim || "";
+  $("sourceTag").textContent = sourceLabel;
+
+  $("advisor").textContent = res.advisor_note || "";
+  $("advisorBox").hidden = !res.advisor_note;
+  const qs = $("qs"); qs.replaceChildren();
+  (res.questions || []).slice(0, 3).forEach((item) => {
+    const li = document.createElement("li");
+    const box = document.createElement("div");
+    if (item.focus) { const fo = document.createElement("span"); fo.className = "focus"; fo.textContent = item.focus; box.append(fo); }
+    const q = document.createElement("div"); q.className = "q"; q.textContent = item.q || "";
+    const why = document.createElement("div"); why.className = "why"; why.textContent = item.why || "";
+    box.append(q, why);
+    if (item.good || item.red) {
+      const flags = document.createElement("div"); flags.className = "flags";
+      if (item.good) { const a = document.createElement("span"); a.className = "ok"; a.textContent = "Reassuring"; const b = document.createElement("span"); b.textContent = item.good; flags.append(a, b); }
+      if (item.red) { const a = document.createElement("span"); a.className = "bad"; a.textContent = "Warning sign"; const b = document.createElement("span"); b.textContent = item.red; flags.append(a, b); }
+      box.append(flags);
+    }
+    li.append(box); qs.append(li);
+  });
+
+  const meter = $("meter"), rows = $("rows");
+  meter.replaceChildren(); rows.replaceChildren();
+  let found = 0, missing = 0, inSi = 0;
+  FIELDS.forEach((f) => {
+    const d = (res.fields && res.fields[f.key]) || { status: "missing" };
+    const st = ["found", "missing", "unclear", "in_si"].includes(d.status) ? d.status : "unclear";
+    if (st === "found") found++; if (st === "missing") missing++; if (st === "in_si") inSi++;
+    const tick = document.createElement("span"); if (st !== "found") tick.className = st; meter.append(tick);
+
+    const row = document.createElement("div"); row.className = "row";
+    const label = document.createElement("div"); label.className = "label"; label.textContent = f.label;
+    const value = document.createElement("div"); value.className = "value";
+    if (st === "missing") {
+      const blank = document.createElement("span"); blank.className = "blank"; blank.textContent = "Not in the paper"; value.append(blank);
+    } else if (st === "in_si" && !d.value) {
+      const si = document.createElement("span"); si.className = "si-note"; si.textContent = "Not in the main text · probably in the SI"; value.append(si);
+    } else {
+      value.append(document.createTextNode(d.value || "—"));
+    }
+    if (d.evidence) { const ev = document.createElement("span"); ev.className = "evidence"; ev.textContent = "“" + d.evidence + "”"; value.append(ev); }
+    const chip = document.createElement("span"); chip.className = "chip " + st;
+    chip.textContent = { found: "Found", missing: "Gap", unclear: "Unclear", in_si: "Check SI" }[st];
+    row.append(label, value, chip); rows.append(row);
+  });
+  $("meterLabel").innerHTML = "";
+  const lab = $("meterLabel");
+  const b1 = document.createElement("b"); b1.textContent = found; lab.append(b1, " of 12 reported · ");
+  if (inSi) { const b3 = document.createElement("b"); b3.textContent = inSi; lab.append(b3, " to check in SI · "); }
+  const b2 = document.createElement("b"); b2.textContent = missing; lab.append(b2, missing === 1 ? " gap" : " gaps");
+
+  const r = $("result"); r.classList.remove("fresh"); void r.offsetWidth; r.classList.add("fresh");
+}
+
+const ADVISOR = `You are a senior perovskite solar cell scientist (15+ years in device physics and stability testing) who advises deep-tech venture capital firms. Your reader is an investment analyst who is smart but not a specialist. You are precise, sceptical and fair: you separate what the paper shows from what it claims, and you never invent facts.`;
+
+const BENCH = `Reference points for context (checked October 2026; do not invent other benchmark numbers):
+- Single-junction perovskite cell, best certified: about 28% (27.98%, small lab cell, 2026).
+- Perovskite-silicon tandem cell, best certified: 35.5% (2026).
+- Pure 2D / quasi-2D Ruddlesden-Popper cells: best reported a little over 21% (2022). Dion-Jacobson cells: about 19.5% (2022).
+- Commercial module qualification (IEC 61215) includes damp heat at 85 °C / 85% RH for 1,000 h and thermal cycling between -40 and 85 °C.
+- Stability tests from easiest to hardest: dark storage at room temperature (ISOS-D-1) < dark heat (ISOS-D-2) < light at room temperature (ISOS-L-1) < light plus heat at maximum power point (ISOS-L-2, 65-85 °C). Light plus heat at maximum power point for 1,000 h or more is closest to real operation.
+- Small cells (< 0.1 cm²) usually lose efficiency when scaled to 1 cm² and to modules. Certified values from an independent lab (NREL, Fraunhofer ISE, JET, NPVM, ESTI) carry more weight than in-house champion values.`;
+
+const STATUS_RULES = `Status for each item:
+- "found": the text gives it.
+- "unclear": mentioned, but a key detail is absent (say which).
+- "in_si": not in this text, but the text points to the Supporting/Supplementary Information for it, or the text has no experimental/methods section and this is a methods-type item (area, deposition, statistics, certification details). It is probably in the SI, so it is not a red flag by itself.
+- "missing": not given and no sign it is in the SI.
+Never invent values.`;
+
+const QUESTION_RULES = `Write the briefing and exactly 3 questions for the analyst to ask the authors or founders, each with a different focus, in this order:
+1. focus "Efficiency": is the headline efficiency credible and comparable (area, certification, scan direction, statistics, stabilised output, position versus the reference points)?
+2. focus "Stability": does the stability evidence reflect real operation (which ISOS level, temperature, bias, duration versus 1,000 h, encapsulation, atmosphere)?
+3. focus "Weak spot of this paper": the single most decision-relevant weakness specific to THIS paper that 1 and 2 do not cover, e.g. a degradation mechanism the authors themselves mention, whether the process can scale, how new the approach really is, or the gap to the reference points.
+Rules for questions:
+- Do not ask for something marked "in_si" unless it is decisive; prefer real gaps.
+- "q": one question, at most two short sentences, no lists of sub-questions, polite plain English, citing the paper's own numbers.
+- "why": one English sentence on the investment risk this question tests.
+- "good": a short English phrase describing an answer that should reassure an investor, with concrete thresholds where possible.
+- "red": a short English phrase describing an answer that should worry them.
+"advisor_note": two plain English sentences, as an expert would brief the analyst before the meeting: where this result sits versus the reference points, and how much weight to put on it. Explain any jargon in plain words.`;
+
+const FIELD_JSON = '"fields": {"pce": {"status": "", "value": "", "evidence": ""}, ... all 12 keys ...}';
+const Q_JSON = '"questions": [{"focus": "Efficiency", "q": "", "why": "", "good": "", "red": ""}, {"focus": "Stability", "q": "", "why": "", "good": "", "red": ""}, {"focus": "Weak spot of this paper", "q": "", "why": "", "good": "", "red": ""}]';
+
+function itemList() { return FIELDS.map((f, i) => `${i + 1}. ${f.key} (${f.label}): ${f.rule}`).join("\n"); }
+
+function buildPrompt(text) {
+  return `${ADVISOR}
+
+${BENCH}
+
+Read the paper text below and check these 12 items:
+${itemList()}
+
+${STATUS_RULES}
+For each item give status, value (a short English phrase with the paper's own numbers and units; empty if missing or in_si) and evidence (an exact quote from the text, at most 20 words; empty if none).
+
+${QUESTION_RULES}
+
+Also give "claim": one English sentence summarising the headline claim, and "title": the paper title if it appears, else "".
+
+Reply with only this JSON:
+{"title": "", "claim": "", "advisor_note": "", ${FIELD_JSON}, ${Q_JSON}}
+
+Paper text:
+"""
+${text}
+"""`;
+}
+
+// One call can carry 64 KiB of text, so long papers (and supplementary files) are read in parts:
+// each part is checked for the 12 items, the parts are merged, and one last call writes the briefing and questions.
+const ENC = new TextEncoder();
+const PART_BYTES = 50000;
+function splitIntoParts(text) {
+  if (ENC.encode(text).length <= PART_BYTES + 6000) return [text];
+  const parts = [];
+  let start = 0;
+  while (start < text.length) {
+    let size = 46000;
+    while (size > 5000 && ENC.encode(text.slice(start, start + size)).length > PART_BYTES) size = Math.floor(size * 0.9);
+    let end = Math.min(text.length, start + size);
+    if (end < text.length) {
+      const cut = text.lastIndexOf("\n", end);
+      if (cut > start + size * 0.7) end = cut;
+    }
+    parts.push(text.slice(start, end));
+    if (end >= text.length) break;
+    start = Math.max(end - 800, start + 1);
+  }
+  return parts;
+}
+
+function buildPartPrompt(text, i, n) {
+  return `${ADVISOR}
+
+Below is PART ${i} of ${n} of one paper (main text and possibly supplementary information). Check ONLY this part for these 12 items:
+${itemList()}
+
+${STATUS_RULES}
+For each item give status, value (a short English phrase with the paper's own numbers and units; empty if missing or in_si) and evidence (an exact quote from this part, at most 20 words; empty if none).${i === 1 ? ' Also give "title" (the paper title if it appears, else "") and "claim" (one English sentence summarising the headline claim).' : ""}
+
+Reply with only this JSON:
+{${i === 1 ? '"title": "", "claim": "", ' : ""}${FIELD_JSON}}
+
+Part ${i} of ${n}:
+"""
+${text}
+"""`;
+}
+
+function buildQuestionPrompt(merged, abstractText) {
+  const sheet = FIELDS.map((f) => {
+    const d = merged.fields[f.key];
+    return `- ${f.label} [${d.status}]: ${d.value || "(none)"}${d.evidence ? ` (quote: "${d.evidence}")` : ""}`;
+  }).join("\n");
+  return `${ADVISOR}
+
+${BENCH}
+
+The whole paper has already been read; this is the resulting checklist (found / unclear / in_si / missing):
+${sheet}
+
+Headline claim: ${merged.claim || "(see opening text)"}
+
+Opening text of the paper:
+"""
+${abstractText}
+"""
+
+${QUESTION_RULES}
+
+Reply with only this JSON:
+{"advisor_note": "", ${Q_JSON}}`;
+}
+
+const ERR = {
+  not_granted: "Analysis was not allowed, so it is unavailable here.",
+  sampling_disabled: "Claude analysis is not available for this account.",
+  rate_limited: "Too many requests. Wait a moment and try again.",
+  session_expired: "Your session expired. Sign in again and retry.",
+  prompt_too_large: "The text is too long. Paste the abstract and methods only.",
+  invalid_json: "The result could not be read. Try again.",
+  refused: "This text cannot be analysed. Try another paper.",
+  empty_completion: "The result was empty. Try a shorter text.",
+  upstream_error: "The connection dropped. Try again.",
+  bad_key: "The API key is invalid or lacks access. Check the key.",
+  network: "Could not reach the Anthropic API. This site may block outside connections."
+};
+
+// Two ways to reach Claude: inside claude.ai the page asks through the viewer (the viewer's own Claude
+// usage); anywhere else (a blog) it calls the Anthropic API with a key the visitor types in, never stored.
+const IN_CLAUDE = !!window.claude;
+const API_MODEL = "claude-sonnet-5-5";
+function parseJsonLoose(text) {
+  try { return JSON.parse(text); } catch {}
+  const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if (fence) { try { return JSON.parse(fence[1]); } catch {} }
+  const a = text.indexOf("{"), b = text.lastIndexOf("}");
+  if (a >= 0 && b > a) { try { return JSON.parse(text.slice(a, b + 1)); } catch {} }
+  throw { code: "invalid_json" };
+}
+async function askJson(prompt, signal) {
+  if (IN_CLAUDE) return sample.json(prompt, { signal });
+  const key = $("apikey").value.trim();
+  let r;
+  try {
+    r = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST", signal,
+      headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
+      body: JSON.stringify({ model: API_MODEL, max_tokens: 6000, messages: [{ role: "user", content: prompt + "\n\nReply with the JSON only." }] })
+    });
+  } catch (e) {
+    throw { code: e && e.name === "AbortError" ? "cancelled" : "network" };
+  }
+  if (r.status === 401 || r.status === 403) throw { code: "bad_key" };
+  if (r.status === 429) throw { code: "rate_limited" };
+  if (!r.ok) {
+    const body = await r.text().catch(() => "");
+    throw { code: /too long|too large/i.test(body) ? "prompt_too_large" : "upstream_error" };
+  }
+  const j = await r.json();
+  const text = (j.content || []).filter((c) => c.type === "text").map((c) => c.text).join("");
+  return parseJsonLoose(text);
+}
+
+const RANK = { found: 3, in_si: 2, unclear: 1, missing: 0 };
+function mergeParts(results) {
+  const merged = { title: "", claim: "", fields: {} };
+  results.forEach((r) => {
+    if (!merged.title && r.title) merged.title = r.title;
+    if (!merged.claim && r.claim) merged.claim = r.claim;
+    FIELDS.forEach((f) => {
+      const d = (r.fields && r.fields[f.key]) || { status: "missing" };
+      const cur = merged.fields[f.key];
+      if (!cur || (RANK[d.status] ?? 0) > (RANK[cur.status] ?? 0)) merged.fields[f.key] = d;
+    });
+  });
+  return merged;
+}
+
+async function run() {
+  const text = paper.value.trim();
+  if (text.length < 80) { setStatus("Enter at least 80 characters of paper text.", true); paper.focus(); return; }
+  if (IN_CLAUDE && !sample) { setStatus("Analysis is not available here. Open this page in claude.ai.", true); return; }
+  if (!IN_CLAUDE && !$("apikey").value.trim().startsWith("sk-")) { setStatus("Enter your Anthropic API key.", true); $("apikey").focus(); return; }
+  const parts = splitIntoParts(text);
+  ctl = new AbortController();
+  runBtn.disabled = true; stopBtn.hidden = false;
+  try {
+    let res;
+    if (parts.length === 1) {
+      setStatus("Reading the paper… this usually takes 20–60 seconds.");
+      res = await askJson(buildPrompt(text), ctl.signal);
+      if (!res || typeof res !== "object" || !res.fields || !Array.isArray(res.questions)) throw { code: "invalid_json" };
+    } else {
+      const partResults = [];
+      for (let i = 0; i < parts.length; i++) {
+        setStatus(`Long paper: reading all of it in ${parts.length} parts… (${i + 1}/${parts.length}) about 20–60 seconds per part.`);
+        const r = await askJson(buildPartPrompt(parts[i], i + 1, parts.length), ctl.signal);
+        if (!r || typeof r !== "object" || !r.fields) throw { code: "invalid_json" };
+        partResults.push(r);
+      }
+      const merged = mergeParts(partResults);
+      setStatus("Finished reading. Writing the briefing and questions…");
+      const q = await askJson(buildQuestionPrompt(merged, text.slice(0, 4000)), ctl.signal);
+      if (!q || !Array.isArray(q.questions)) throw { code: "invalid_json" };
+      res = { ...merged, advisor_note: q.advisor_note || "", questions: q.questions };
+    }
+    const label = parts.length === 1
+      ? `Result · all ${text.length.toLocaleString("en-US")} characters read`
+      : `Result · all ${text.length.toLocaleString("en-US")} characters read in ${parts.length} parts`;
+    render(res, label);
+    setStatus("");
+  } catch (e) {
+    if (e && e.code === "cancelled") setStatus("Stopped.");
+    else setStatus(ERR[e && e.code] || ERR.upstream_error, true);
+    if (e && (e.code === "not_granted" || e.code === "sampling_disabled")) runBtn.hidden = true;
+  } finally {
+    runBtn.disabled = false; stopBtn.hidden = true; ctl = null;
+  }
+}
+
+function loadScript(src) {
+  return new Promise((ok, fail) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = fail; document.head.append(s); });
+}
+async function readPdf(file) {
+  const base = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+  pdfReady = pdfReady || loadScript(base + "pdf.worker.min.js").then(() => loadScript(base + "pdf.min.js"));
+  await pdfReady;
+  const lib = window.pdfjsLib;
+  lib.GlobalWorkerOptions.workerSrc = base + "pdf.worker.min.js";
+  const doc = await lib.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
+  const parts = [];
+  for (let i = 1; i <= doc.numPages; i++) {
+    const page = await doc.getPage(i);
+    const tc = await page.getTextContent();
+    parts.push(tc.items.map((it) => it.str).join(" "));
+  }
+  return { text: parts.join("\n\n").replace(/[ \t]+/g, " ").trim(), pages: doc.numPages };
+}
+
+$("pdf").addEventListener("change", async (ev) => {
+  const files = ev.target.files ? [...ev.target.files] : [];
+  if (!files.length) return;
+  setStatus("Extracting text from the PDF…");
+  try {
+    const chunks = []; let pages = 0;
+    for (const file of files) {
+      const r = await readPdf(file);
+      pages += r.pages;
+      if (r.text.length >= 80) chunks.push(files.length > 1 ? `=== File: ${file.name} ===\n\n${r.text}` : r.text);
+    }
+    const text = chunks.join("\n\n");
+    if (text.length < 80) { setStatus("No text found in this PDF. It may be a scanned image.", true); return; }
+    paper.value = text; updateCount();
+    const n = splitIntoParts(text).length;
+    setStatus(`Extracted ${text.length.toLocaleString("en-US")} characters from ${files.length} PDF${files.length > 1 ? "s" : ""} (${pages} pages).${n > 1 ? ` It will be read in ${n} parts.` : ""} Press Find gaps.`);
+  } catch (e) {
+    setStatus("Could not read the PDF. Paste the text instead.", true);
+  } finally { ev.target.value = ""; }
+});
+
+$("copy").addEventListener("click", async () => {
+  const lines = [...document.querySelectorAll("#qs .q")].map((el, i) => `${i + 1}. ${el.textContent}`).join("\n");
+  try { await navigator.clipboard.writeText(lines); $("copyStatus").textContent = "Copied."; }
+  catch { const r = document.createRange(); r.selectNodeContents($("qs")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $("copyStatus").textContent = "Selected. Copy it from here."; }
+});
+
+paper.addEventListener("input", () => { updateCount(); if (statusEl.classList.contains("err")) setStatus(""); });
+runBtn.addEventListener("click", run);
+stopBtn.addEventListener("click", () => ctl && ctl.abort());
+
+paper.value = EXAMPLE_TEXT; updateCount();
+render(EXAMPLE_RESULT, "Example · made from a fictional abstract");
+
+if (IN_CLAUDE) {
+  $("usage").textContent = "Uses Claude. Each run counts against the Claude usage of the person who opened this page.";
+  (async () => {
+    try { sample = await window.claude.use("sample"); } catch { sample = null; }
+    if (!sample) setStatus("Only the example is shown here. Open this page in claude.ai to analyse a paper.");
+  })();
+} else {
+  $("keyrow").hidden = false;
+  $("usage").textContent = "Uses the Claude API. Each run is billed to the account of the API key you enter. The key is sent only to Anthropic and is never stored.";
+}
+</script>
+
+</body>
+</html>
