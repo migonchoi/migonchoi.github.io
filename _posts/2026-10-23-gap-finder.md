@@ -9,8 +9,7 @@ description: "Building Gap Finder, a tool that identifies missing evidence and h
 
 > **Can AI go beyond summarizing scientific papers to critically examine research claims and help us ask better questions?**
 
-
-**[Try Demo]({{ "/demo/gap-finder/" | relative_url }})**
+**[Run the demo](/demo/gap-finder/)**
 
 ## 1. Reading a Paper Is Not the Same as Evaluating a Technology
 
