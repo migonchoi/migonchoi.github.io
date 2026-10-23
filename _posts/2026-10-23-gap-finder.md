@@ -7,6 +7,8 @@ tags: Materials-Science, Perovskite-Solar-Cells, AI
 description: "Building Gap Finder, a tool that identifies missing evidence and helps readers ask better questions about scientific claims."
 ---
 
+**[Try Demo]({{ "/demo/gap-finder/" | relative_url }})**
+
 ## 1. Reading a Paper Is Not the Same as Evaluating a Technology
 
 Thousands of scientific papers are published every day, but impressive research results do not necessarily mean a technology is ready for real-world applications.
@@ -29,8 +31,6 @@ Users can paste text or upload a PDF to receive four types of analysis:
 - **12-Point Checklist:** Evaluates key metrics such as efficiency, device area, stability, and reproducibility, labeling each as `Found`, `Gap`, `Unclear`, or `Check SI`.
 - **Expert Briefing:** Explains how the reported results compare with existing technologies and what they mean in practice.
 - **Three Critical Questions:** Generates three important follow-up questions, along with explanations of why they matter.
-
-**[Try Demo →]({{ "/demo/gap-finder/" | relative_url }})**
 
 The goal is not simply to summarize scientific papers. It is to **help people read them more critically and understand what questions to ask next.**
 
