@@ -2,9 +2,9 @@
 layout: post
 title: "Gap Finder: A Tool That Finds What Scientific Papers Leave Out"
 date: 2026-10-23
-categories: [AI-for-Science]
-tags: [Gap-Finder, Materials-Science, Perovskite-Solar-Cells, AI]
-description: "Building Gap Finder, an AI tool that identifies missing evidence and helps readers ask better questions about scientific claims."
+categories: AI for Materials
+tags: Materials-Science, Perovskite-Solar-Cells, AI
+description: "Building Gap Finder, a tool that identifies missing evidence and helps readers ask better questions about scientific claims."
 ---
 
 ## 1. Reading a Paper Is Not the Same as Evaluating a Technology
