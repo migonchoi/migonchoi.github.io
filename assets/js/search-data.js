@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "post-the-decision-layer-demo",
+        },{id: "post-gap-finder-a-tool-that-finds-what-scientific-papers-leave-out",
+        
+          title: "Gap Finder: A Tool That Finds What Scientific Papers Leave Out",
+        
+        description: "Building Gap Finder, an AI tool that identifies missing evidence and helps readers ask better questions about scientific claims.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/gap-finder/";
+          
+        },
+      },{id: "post-the-decision-layer-demo",
         
           title: "The Decision Layer Demo",
         
