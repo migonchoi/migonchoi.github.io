@@ -123,6 +123,12 @@ button:disabled { opacity: 0.55; cursor: default; }
 .flags .ok { color: var(--found); font-weight: 600; }
 .flags .bad { color: var(--gap-ink); font-weight: 600; }
 .note { font-size: 12px; color: var(--muted); margin: 0; }
+.cta { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.cta > div { flex: 1 1 320px; min-width: 0; }
+.cta-title { margin: 0; font-weight: 600; font-size: 16px; }
+.cta-text { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+.cta-btn { min-height: 44px; padding: 0 20px; border-radius: 10px; background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; text-decoration: none; }
+.cta-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 @media (max-width: 560px) {
   h1 { font-size: 28px; }
   .row { grid-template-columns: minmax(0, 1fr) auto; }
@@ -143,7 +149,15 @@ button:disabled { opacity: 0.55; cursor: default; }
     <p class="lede">Paste a paper's abstract or upload the PDF. Gap Finder spots the information you need to judge the headline claim but the paper leaves out, and turns it into three questions to ask.</p>
   </header>
 
-  <section class="slip" aria-labelledby="paper-label">
+  <section class="cta" id="cta" hidden>
+    <div>
+      <p class="cta-title">Try it on your own paper</p>
+      <p class="cta-text">The live version runs inside Claude with your own Claude account. No API key needed; sign in to Claude to use it.</p>
+    </div>
+    <a class="cta-btn" href="https://claude.ai/artifact/XkCtDaWge44uFryKhwackW" target="_blank" rel="noopener">Try it live in Claude</a>
+  </section>
+
+  <section class="slip" id="slip" aria-labelledby="paper-label">
     <div class="slip-head">
       <label id="paper-label" for="paper">Paper text</label>
       <span class="count" id="count">0 characters</span>
@@ -210,27 +224,27 @@ const FIELDS = [
 const EXAMPLE_TEXT = "Here we report a multifunctional ammonium additive that passivates grain boundaries in formamidinium-rich perovskite films. The resulting inverted (p-i-n) solar cells achieve a power conversion efficiency of 25.8%, among the highest reported for this architecture. Unencapsulated devices retain 95% of their initial efficiency after 1,000 h of storage in ambient air, and 90% after 500 h under continuous illumination. The additive also suppresses ion migration, as evidenced by reduced hysteresis. Our results provide a simple route toward efficient and stable perovskite photovoltaics.";
 
 const EXAMPLE_RESULT = {
-  title: "",
-  advisor_note: "25.8% is high for a p-i-n single-junction cell but still short of the best certified record (about 28%), and with no area or certification it cannot yet be compared like for like. The stability evidence is only room-temperature storage and a light test under unstated conditions, so treat operational stability as early-stage.",
-  claim: "An ammonium additive passivates grain boundaries, giving 25.8% efficiency and high stability in p-i-n cells.",
+  title: "Ren et al., Enhanced Charge Transfer in Quasi-2D Perovskite by Formamidinium Cation Gradient Incorporation for Efficient and Stable Solar Cells (Small, 2024)",
+  claim: "Grading 10% formamidinium through a quasi-2D perovskite speeds charge transfer, raising efficiency to 18.58% (control 16.03%) and improving heat and light stability.",
+  advisor_note: "18.58% is solid for a quasi-2D (n = 5) cell, but below the best quasi-2D results already reported in 2022 (a little over 21%) and far from 3D cells (about 28% certified). The stability data are dark storage at 85 °C in nitrogen and a 400 h light test in air with unstated temperature and bias, so they say little yet about real operation.",
   fields: {
-    pce: { status: "found", value: "25.8% (scan direction not stated)", evidence: "achieve a power conversion efficiency of 25.8%" },
-    area: { status: "missing", value: "", evidence: "" },
+    pce: { status: "found", value: "18.58% champion cell, forward scan (reverse scan in the SI)", evidence: "the champion PSC with FA10 achieved a PCE of 18.58%" },
+    area: { status: "in_si", value: "", evidence: "" },
     certified: { status: "missing", value: "", evidence: "" },
-    stabilized: { status: "missing", value: "", evidence: "only reduced hysteresis is mentioned" },
-    stats: { status: "missing", value: "", evidence: "" },
-    stability_conditions: { status: "unclear", value: "Storage in air / continuous light. Temperature, humidity and bias not stated", evidence: "storage in ambient air ... under continuous illumination" },
-    stability_result: { status: "found", value: "95% after 1,000 h (storage), 90% after 500 h (light)", evidence: "retain 95% ... after 1,000 h ... 90% after 500 h" },
-    encapsulation: { status: "found", value: "Unencapsulated", evidence: "Unencapsulated devices" },
-    architecture: { status: "found", value: "p-i-n (inverted)", evidence: "inverted (p-i-n) solar cells" },
-    composition: { status: "unclear", value: "FA-rich (exact composition not stated)", evidence: "formamidinium-rich perovskite films" },
-    deposition: { status: "missing", value: "", evidence: "" },
-    control: { status: "unclear", value: "No numbers for a device without the additive", evidence: "" }
+    stabilized: { status: "missing", value: "", evidence: "" },
+    stats: { status: "in_si", value: "Only the trend of average PCE with FA content (Fig. S11); no device count or mean ± SD in the main text", evidence: "the average PCE of devices exhibits a nonmonotonic variation tendency with FA content" },
+    stability_conditions: { status: "unclear", value: "Heat: 85 °C in a nitrogen glovebox, dark. Light: AM 1.5G in air; temperature, humidity and bias not stated", evidence: "packaged devices stored in nitrogen glovebox at 85 °C" },
+    stability_result: { status: "found", value: "Heat: unchanged after 300 h (control fell to 50%). Light: 82% after 400 h (control 50%)", evidence: "the FA10-based device remains at 82% of the initial" },
+    encapsulation: { status: "found", value: "Packaged devices (method not stated)", evidence: "we also tested the stability of packaged devices" },
+    architecture: { status: "found", value: "p-i-n: ITO / PTAA / perovskite / C60 / BCP / Ag", evidence: "(PTAA)/perovskite/C60 /bathocuproine (BCP)/Ag" },
+    composition: { status: "found", value: "(AA)2(MA0.9FA0.1)4Pb5I16, quasi-2D, nominal n = 5, n-amylamine spacer", evidence: "where AA represents n-amylamine" },
+    deposition: { status: "in_si", value: "", evidence: "" },
+    control: { status: "found", value: "FA0 (no FA) 16.03% vs FA10 18.58%, same stability tests", evidence: "obtained from the FA0-based device" }
   },
   questions: [
-    { focus: "Efficiency", q: "What was the device area for the 25.8% result, and was it certified by an independent lab?", why: "Without area and certification the claim cannot be compared with competing technologies on equal terms.", good: "A value on a cell of 1 cm² or larger, or an independently certified value", red: "A single champion cell under 0.1 cm², not certified" },
-    { focus: "Stability", q: "At what temperature was the 500 h light test run, and were the cells held at maximum power point?", why: "'90% retained' means very different things at room temperature on open circuit and at 85 °C at maximum power point.", good: "65–85 °C, maximum power point, 1,000 h or more (done or planned)", red: "Room temperature, open circuit, 500 h at most" },
-    { focus: "Weak spot of this paper", q: "The only evidence that the additive suppresses ion migration is reduced hysteresis. Do you have a direct measurement?", why: "If the mechanism is weak, the effect may not reproduce under other conditions or on larger areas.", good: "Direct ion-migration measurements or long-term bias tests", red: "No evidence beyond hysteresis" }
+    { focus: "Efficiency", q: "The 18.58% is a single champion cell from a forward scan. What were the mean and spread across all devices made under the same conditions?", why: "One champion cell can overstate a 2.5-point gain that may shrink on average.", good: "20 or more devices with a mean near 18% and a tight spread", red: "A handful of devices, or a mean around 16–17%" },
+    { focus: "Stability", q: "The 85 °C test was dark storage in nitrogen. Do you have results with light and heat together at maximum power point (65–85 °C)?", why: "Dark storage is far easier than operation, so it says little about field lifetime.", good: "Light-plus-heat data at maximum power point for 1,000 h or more, with 80%+ retained", red: "No combined light-and-heat test done or planned" },
+    { focus: "Weak spot of this paper", q: "You mention silver electrode corrosion in the light test in air. Was the drop to 82% caused by the perovskite or by the electrode?", why: "If the electrode limits lifetime, the FA gradient may not be what decides it, and a separate fix is needed.", good: "Failure analysis separating the two, or data with a more stable electrode", red: "No analysis of the cause" }
   ]
 };
 
@@ -580,8 +594,8 @@ paper.addEventListener("input", () => { updateCount(); if (statusEl.classList.co
 runBtn.addEventListener("click", run);
 stopBtn.addEventListener("click", () => ctl && ctl.abort());
 
-paper.value = EXAMPLE_TEXT; updateCount();
-render(EXAMPLE_RESULT, "Example · made from a fictional abstract");
+updateCount();
+render(EXAMPLE_RESULT, "Example result · a real paper");
 
 if (IN_CLAUDE) {
   $("usage").textContent = "Uses Claude. Each run counts against the Claude usage of the person who opened this page.";
@@ -590,8 +604,8 @@ if (IN_CLAUDE) {
     if (!sample) setStatus("Only the example is shown here. Open this page in claude.ai to analyse a paper.");
   })();
 } else {
-  $("keyrow").hidden = false;
-  $("usage").textContent = "Uses the Claude API. Each run is billed to the account of the API key you enter. The key is sent only to Anthropic and is never stored.";
+  $("slip").hidden = true;
+  $("cta").hidden = false;
 }
 </script>
 
