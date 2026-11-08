@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "post-gap-finder-a-tool-that-finds-what-scientific-papers-leave-out",
+        },{id: "post-from-reading-papers-to-evaluating-startup-claims",
+        
+          title: "From Reading Papers to Evaluating Startup Claims",
+        
+        description: "An updated Gap Finder uses rule-based evaluations and source-verified quotations to assess whether scientific evidence supports deep-tech startup claims.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/gapfinder2/";
+          
+        },
+      },{id: "post-gap-finder-a-tool-that-finds-what-scientific-papers-leave-out",
         
           title: "Gap Finder: A Tool That Finds What Scientific Papers Leave Out",
         
